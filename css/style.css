@@ -41,7 +41,7 @@ body {
 .slide {
   position: absolute;
   inset: 0;
-  padding: 5vh 7vw 9vh;
+  padding: 6vh max(7vw, 4.5em) 9vh;
   display: none;
   flex-direction: column;
   overflow: auto;
@@ -144,6 +144,31 @@ table.plain tr.hl td { color: var(--orange); }
 
 @media (max-width: 900px) {
   .cols, .cols.wide-left { grid-template-columns: 1fr; }
-  .slide { padding: 4vh 5vw 9vh; }
+  .slide { padding: 4vh max(5vw, 4.5em) 9vh; }
   body { font-size: 15px; }
 }
+
+#scratch-btn {
+  position: fixed; left: 0.9em; top: 0.9em; z-index: 40;
+  width: 2.4em; height: 2.4em; border-radius: 50%;
+  background: rgba(23,33,30,0.85); color: var(--chalk-dim);
+  border: 1px solid var(--rule); cursor: pointer; display: flex; align-items: center; justify-content: center;
+  padding: 0;
+}
+#scratch-btn:hover { color: var(--chalk); border-color: var(--chalk-faint); }
+#scratch-btn.on { color: var(--orange); border-color: var(--orange); }
+
+#scratch { position: fixed; inset: 0; z-index: 30; display: none; }
+#scratch.open { display: block; }
+#scratch canvas { position: absolute; inset: 0; touch-action: none; cursor: crosshair; }
+.scratch-tools {
+  position: absolute; right: 1em; top: 0.9em; display: flex; gap: 0.4em; align-items: center;
+  background: rgba(23,33,30,0.85); border: 1px solid var(--rule); border-radius: 999px; padding: 0.3em 0.6em;
+}
+.scratch-tools button {
+  font: inherit; font-size: 0.75em; color: var(--chalk-dim); background: transparent;
+  border: 1px solid transparent; border-radius: 999px; padding: 0.25em 0.7em; cursor: pointer;
+  display: flex; align-items: center;
+}
+.scratch-tools button.on { border-color: var(--chalk-faint); color: var(--chalk); }
+.scratch-tools .sw { display: inline-block; width: 1.1em; height: 1.1em; border-radius: 50%; }
