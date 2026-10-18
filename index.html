@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crouzeix: Folie à Deux</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Caveat:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="deck">
+
+<!-- 1 -->
+<section class="slide title-slide">
+  <div class="hand">a seminar talk, October 2026</div>
+  <h1>Crouzeix:<br>Folie à Deux</h1>
+  <p class="sub">Two proofs of the Crouzeix conjecture appeared within a week of each other in July 2026, by two groups who did not know of each other, by two methods that turn out to be the same method. Both credit ChatGPT with the decisive step.</p>
+  <p class="who">Nic Berkopec · <span class="dim">use the arrow keys, or click the edges</span></p>
+</section>
+
+<!-- 2 -->
+<section class="slide">
+  <h2>Numerical range</h2>
+  <div class="cols wide-left">
+    <div>
+      <p><b>Definition.</b> Let \(\mathcal H\) be a complex Hilbert space and \(T\in\mathcal B(\mathcal H)\) a bounded operator. The numerical range of \(T\) is
+      \[ W(T)=\{\langle Tx,x\rangle:\ x\in\mathcal H,\ \|x\|=1\}. \]</p>
+      <p>In finite dimension \(W(T)\) is compact and convex (Toeplitz–Hausdorff); in general it is convex, and \(\overline{W(T)}\supseteq\operatorname{conv}\sigma(T)\), with equality for normal \(T\).</p>
+      <p class="remark small">A \(2\times2\) matrix has an ellipse with the eigenvalues as foci. A \(3\times 3\) Jordan block has a disk. Nilpotent weighted shifts have disks. The blue dashed circle is the numerical radius \(w(T)\), the orange one is \(\|T\|\); their ratio is the Crouzeix ratio for \(p(z)=z\), and it never exceeds \(2\).</p>
+    </div>
+    <div class="viz" data-viz="numrange">
+      <svg></svg>
+      <div class="controls">
+        <label>operator
+          <select>
+            <option value="nilpotent">N = [[0,1],[0,0]]</option>
+            <option value="ellipse">[[1,1],[0,-1]]</option>
+            <option value="normal">diag(1, i, -1)</option>
+            <option value="tri3">[[1,1,0],[0,i,1],[0,0,-1]]</option>
+            <option value="jordan3">Jordan block J3(0)</option>
+            <option value="shift4">weighted shift (1, 0.5, 1)</option>
+            <option value="custom">upper triangular 2x2</option>
+          </select>
+        </label>
+        <div class="custom" style="display:none;display:flex;gap:1em;flex-wrap:wrap">
+          <label>λ₁ <input type="range" name="l1" min="-1.5" max="1.5" step="0.05" value="1"><span>1.00</span></label>
+          <label>λ₂ <input type="range" name="l2" min="-1.5" max="1.5" step="0.05" value="-1"><span>-1.00</span></label>
+          <label>γ <input type="range" name="g" min="0" max="2" step="0.05" value="1"><span>1.00</span></label>
+        </div>
+      </div>
+      <div class="readouts"><span>‖T‖ = <b data-out="norm"></b></span><span>w(T) = <b data-out="rad"></b></span><span>‖T‖ / w(T) = <b data-out="ratio"></b></span></div>
+      <div class="matrix" data-out="mat"></div>
+      <div class="caption" data-out="note"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide">
+  <h2>Spectral sets</h2>
+  <p><b>Definition.</b> A compact set \(S\subset\mathbb C\) is a <i>\(K\)-spectral set</i> for \(T\in\mathcal B(\mathcal H)\) if
+  \[ \|p(T)\|\le K\sup_{z\in S}|p(z)|\qquad\text{for all } p\in\mathbb C[z]. \]
+  For convex \(S\), functions holomorphic near \(S\) come along by Runge.</p>
+  <div class="theorem blue"><span class="label">von Neumann's inequality (1951).</span> The closed disk is a spectral set for every contraction:
+  \[ \|T\|\le1\ \Rightarrow\ \|p(T)\|\le\sup_{\mathbb D}|p|. \]
+  Also the closed right half-plane, when \(\operatorname{Re}T\ge0\).</div>
+  <p>Two proofs, and they are the two themes of this talk.</p>
+  <ul>
+    <li><b class="o">Function theory.</b> von Neumann: reduce to Blaschke products, check Möbius maps by hand.</li>
+    <li><b class="b">Dilation theory.</b> Sz.-Nagy: \(T\) is the compression of a unitary \(U\), and \(p(T)=P_{\mathcal H}\,p(U)|_{\mathcal H}\).</li>
+  </ul>
+</section>
+
+<!-- 4 -->
+<section class="slide">
+  <h2>Crouzeix's conjecture</h2>
+  <div class="theorem"><span class="label">Conjecture (Crouzeix 2004).</span> Let \(T\) be a bounded operator on a Hilbert space \(\mathcal H\). Then \(\overline{W(T)}\) is a \(2\)-spectral set for \(T\).</div>
+  <div class="cols wide-left">
+    <div>
+      <p><b>Remark.</b> The constant is sharp. For \(N=\begin{pmatrix}0&1\\0&0\end{pmatrix}\) and \(p(z)=z\),
+      \[ W(N)=D(0,\tfrac12),\qquad \|p(N)\|=1=2\cdot\tfrac12=2\sup_{D(0,1/2)}|p|. \]</p>
+      <p><b>Antecedents.</b></p>
+      <ul>
+        <li>von Neumann: constant \(1\), only for contractions.</li>
+        <li>Berger 1965, Berger–Stampfli 1967, Okubo–Ando 1975: the disk is a \(2\)-spectral set whenever it contains \(W(T)\). Via \(2\)-dilations, \(T^n=2V^*U^nV\).</li>
+      </ul>
+      <p>So Crouzeix asks for the disk's constant on every convex set. For \(2\times2\) matrices he proved it, with equality only when \(W(T)\) is a disk.</p>
+    </div>
+    <div class="viz">
+      <svg viewBox="0 0 300 300">
+        <line x1="20" y1="150" x2="280" y2="150" stroke="rgba(233,229,218,0.25)"/>
+        <line x1="150" y1="20" x2="150" y2="280" stroke="rgba(233,229,218,0.25)"/>
+        <circle cx="150" cy="150" r="120" fill="none" stroke="#f2b07a" stroke-width="2" stroke-dasharray="7 6"/>
+        <circle cx="150" cy="150" r="60" fill="rgba(156,201,234,0.22)" stroke="#9cc9ea" stroke-width="2.5"/>
+        <circle cx="150" cy="150" r="4" fill="#f2b07a"/>
+        <text x="215" y="140" fill="#9cc9ea" font-size="13" font-style="italic">W(N)</text>
+        <text x="236" y="46" fill="#f2b07a" font-size="13">|z| = ‖N‖ = 1</text>
+      </svg>
+      <div class="caption">The numerical range of the nilpotent has radius ½ while the norm is 1.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide">
+  <h2>Constants</h2>
+  <p>\(\Omega\) bounded convex with smooth boundary, \(W(T)\subset\Omega\); \(A(\Omega)\) the functions holomorphic on \(\Omega\), continuous on \(\overline\Omega\).
+  \[ C_\Omega:=\sup\big\{\|f(T)\|:\ W(T)\subset\Omega,\ \|f\|_\infty\le1\big\}. \]</p>
+  <table class="plain">
+    <tr><th>who</th><th>when</th><th>\(C_\Omega\le\)</th><th></th></tr>
+    <tr><td>Delyon–Delyon</td><td>1999</td><td>\(\infty\)</td><td>depends on \(\Omega\)</td></tr>
+    <tr><td>Crouzeix</td><td>2004</td><td>\(2\)</td><td>only for \(2\times2\)</td></tr>
+    <tr><td>Crouzeix</td><td>2007</td><td>\(11.08\)</td><td>uniform in \(\Omega\)</td></tr>
+    <tr><td>Crouzeix–Palencia</td><td>2017</td><td>\(1+\sqrt2\)</td><td>works completely bounded</td></tr>
+    <tr class="hl"><td>Jin</td><td>27 July 2026</td><td>\(2\)</td><td>function theory</td></tr>
+    <tr class="hl"><td>Lorist–Schwenninger</td><td>August 2026</td><td>\(2\)</td><td>dilation theory</td></tr>
+  </table>
+  <p><b>Technique</b>, 1999 to 2026: one object, the double-layer potential. Shrinking \(\Omega\) to \(\overline{W(T)}\), \(\sup_\Omega C_\Omega\le2\) is the conjecture.</p>
+</section>
+
+<!-- 6 -->
+<section class="slide">
+  <h2>Double-layer potential</h2>
+  <div class="cols">
+    <div>
+      <p>For \(\sigma\in\partial\Omega\) let \(\nu=\nu(\sigma)\) be the outward unit normal and \(ds\) arclength. For \(z\in\Omega\),
+      \[ \mu(\sigma,z)=\frac{1}{2\pi}\Big(\underbrace{\frac{\nu}{\sigma-z}}_{\text{first layer}}+\underbrace{\frac{\bar\nu}{\bar\sigma-\bar z}}_{\text{second layer}}\Big)=\frac1\pi\operatorname{Re}\frac{\nu}{\sigma-z}. \]</p>
+      <ul>
+        <li>First layer: the Cauchy kernel, \(\frac{1}{2\pi}\frac{\nu\,ds}{\sigma-z}=\frac{1}{2\pi i}\frac{d\sigma}{\sigma-z}\).</li>
+        <li>\(\mu\,ds=\frac1\pi\,d\arg(\sigma-z)\): the angle at which \(z\) sees the boundary. So \(\mu\ge0\) by convexity (\(z\) is inside every supporting line), and \(\int\mu\,ds=2\) for \(z\in\Omega\), \(1\) for \(z\in\partial\Omega\).</li>
+        <li>Why use it? The first layer gives \(f(z)\). If we can control the second layer, we win.</li>
+      </ul>
+      <p class="remark small">Drag \(z\). The boundary is drawn thick where \(\mu\) is large. Push \(z\) to the boundary: half the mass collapses onto the nearest point, and the integral drops from 2 to 1. That is the Gauss jump.</p>
+    </div>
+    <div class="viz" data-viz="dlp">
+      <div class="cols" style="gap:0.6em">
+        <svg class="dom" style="touch-action:none;cursor:crosshair"></svg>
+        <svg class="plot"></svg>
+      </div>
+      <div class="controls">
+        <label>domain <select name="shape"><option value="ellipse">ellipse</option><option value="egg">egg</option><option value="squircle">squircle</option></select></label>
+        <label>distance to boundary <input type="range" name="r" min="0" max="100" step="1" value="40"> <span data-out="r"></span></label>
+        <label>direction <input type="range" name="phi" min="0" max="360" step="1" value="29"> <span data-out="phi"></span>°</label>
+        <label>arc at <input type="range" name="arc" min="0" max="359" step="1" value="200"></label>
+      </div>
+      <div class="readouts"><span>∫ μ ds = <b data-out="int"></b></span><span>min μ = <b data-out="min"></b></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="slide">
+  <h2>Double-layer potential, continued</h2>
+  <p>Replace \(z\) by \(T\) with \(W(T)\subset\Omega\). For \(f\in C(\partial\Omega)\) put
+  \[ C(f,T)=\frac{1}{2\pi i}\int_{\partial\Omega}f(\sigma)(\sigma-T)^{-1}\,d\sigma\in\mathcal B(\mathcal H),\qquad S(f,T)=C(f,T)+C(\bar f,T)^*. \]
+  \(S\) is the functional calculus integrated against the double-layer potential \(\mu(\sigma,T)=\tfrac1\pi\operatorname{Re}[\nu(\sigma)(\sigma-T)^{-1}]\):
+  \[ S(f,T)=\int_{\partial\Omega}f(\sigma)\,\mu(\sigma,T)\,ds,\qquad \mu(\sigma,T)\ge0,\qquad \int_{\partial\Omega}\mu\,ds=2I. \]</p>
+  <div class="theorem"><span class="label">Lemma (Crouzeix–Palencia 2017).</span> For \(f\in A(\Omega)\),\quad \(\|S(f,T)\|=\|f(T)+C(\bar f,T)^*\|\le2\|f\|_{\partial\Omega}\).</div>
+  <p class="remark">Positivity and total mass \(2I\), then Cauchy–Schwarz. Positivity: \(\langle Tx,x\rangle\in\Omega\) for unit \(x\) gives \(\operatorname{Re}\bar\nu(\sigma-T)\ge0\); conjugate by the resolvent.</p>
+  <p>So the question: how does \(\|S(f,T)\|\) control \(\|f(T)\|\)? Can we estimate \(C(\bar f,T)^*\), or make it vanish altogether?</p>
+</section>
+
+<!-- 8 -->
+<section class="slide">
+  <h2>Positivity and the double-layer formula</h2>
+  <div class="cols">
+    <div>
+      <p>Write \(\Phi(f)=\tfrac12S(f,T)\), a unital positive map \(C(\partial\Omega)\to\mathcal B(\mathcal H)\). For \(f\in A(\Omega)\),
+      \[ 2\Phi(f)=f(T)+\alpha(f)(T)^*,\qquad \alpha(f)(z)=\frac{1}{2\pi i}\int_{\partial\Omega}\frac{\overline{f(\sigma)}\,d\sigma}{\sigma-z}, \]
+      where \(\alpha:A(\Omega)\to A(\Omega)\) is antilinear and \(\alpha(1)=1\). Positivity of \(\Phi\) is the lemma.</p>
+      <p>For a point \(z\): \(2\Phi(f)(z)=f(z)+\overline{\alpha(f)(z)}\), the weighted average of \(f\) on the boundary, split into a holomorphic and an anti-holomorphic piece. For the disk, \(\alpha(f)=\overline{f(0)}\), a constant.</p>
+      <p><b>Two ways to use the formula.</b></p>
+      <ul>
+        <li>Estimate the companion: Crouzeix–Palencia, \(\|\alpha(f)\|\le\|f\|\), hence \(1+\sqrt2\).</li>
+        <li>Study the extremal \(f\), a Blaschke product: Bickel, Gorkin, Greenbaum, Overton. Not the route either 2026 proof takes.</li>
+      </ul>
+    </div>
+    <div class="viz" data-viz="identity">
+      <div class="cols" style="gap:0.6em">
+        <svg class="dom" style="touch-action:none;cursor:crosshair"></svg>
+        <svg class="img"></svg>
+      </div>
+      <div class="controls">
+        <label>domain <select name="shape"><option value="ellipse">ellipse</option><option value="egg">egg</option><option value="squircle">squircle</option></select></label>
+        <label>f(z) <select name="f"><option value="square">z²</option><option value="cube">z³</option><option value="mobius">(z − ½)/(2 − z)</option><option value="exp">exp(z)</option></select></label>
+      </div>
+      <div class="readouts"><span>|f(z)| = <b data-out="f"></b></span><span>|α(f)(z)| = <b data-out="g"></b></span><span>|2Φ(f)(z)| = <b data-out="s"></b></span><span>max |f| = <b data-out="m"></b></span></div>
+      <div class="caption">Left: drag \(z\); the boundary is thick where the kernel weight is large. Right: the curve \(f(\partial\Omega)\) with the same weights; blue arrow \(f(z)\), dashed arrow the companion \(\overline{\alpha(f)(z)}\), filled dot their sum \(2\Phi(f)(z)\), hollow dot the average \(\Phi(f)(z)\), which stays in the convex hull.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide">
+  <h2>Crouzeix–Palencia: \(1+\sqrt2\), and why not \(2\)</h2>
+  <p>Let \(K=C_\Omega\), \(\|f\|\le1\), \(T=f(A)\), \(g=\alpha(f)\). Since \(\|g\|\le\|f\|\) on convex \(\Omega\),
+  \[ TT^*TT^*=T\,\big(T+g(A)^*\big)^*\,TT^*-(fgf)(A)\,T^*, \]
+  so \(K^4\le2K^3+K^2\) and \(K\le1+\sqrt2\). <span class="dim">(Ransford–Schwenninger's four lines.)</span></p>
+  <p>Only two facts about the companion were used: \(\|f(A)+g(A)^*\|\le2\) and \(\|g\|\le\|f\|\). Under those two alone, \(1+\sqrt2\) is attained:
+  \(T=\begin{pmatrix}1&1\\0&0\end{pmatrix}\), \(\Omega\) two small disks about \(0\) and \(1\), \(g=-f(0)\) on one and \(-f(1)\) on the other; \(h=\mp1\) gives \(\|h(T)\|=1+\sqrt2\).</p>
+  <p>Not a counterexample, since \(W(T)\not\subset\Omega\), but the end of that road. This \(g\) sends \(1\mapsto-1\). The Cauchy transform sends \(1\mapsto1\). That is the information not yet used.</p>
+</section>
+
+<!-- 10 -->
+<section class="slide">
+  <h2>Equivalent formulation</h2>
+  <div class="theorem"><span class="label">Theorem (Twisted real part).</span> Let \(\mathcal A\) be a unital commutative operator algebra, \(\theta:\mathcal A\to\mathcal B(\mathcal H)\) a unital bounded homomorphism, and \(\alpha:\mathcal A\to\mathcal A\) a unital antilinear map such that the unital linear map
+  \[ \theta_\alpha:\mathcal A\to\mathcal B(\mathcal H),\qquad a\mapsto\tfrac12\big(\theta(a)+\theta(\alpha(a))^*\big) \]
+  is contractive. Then \(\|\theta\|\le2\).</div>
+  <ul>
+    <li>Ransford–Schwenninger (2018) and Clouâtre–Ostermann–Ransford (2023): this statement implies Crouzeix. Take \(\theta(f)=f(T)\), \(\alpha\) the Cauchy transform; then \(\theta_\alpha=\Phi\).</li>
+    <li>Michael Hartz (31 July 2026) proves the theorem, by reorganising Jin's solution.</li>
+  </ul>
+  <p class="remark">Unital and contractive implies positive: \(\operatorname{Re}a\ge0\Rightarrow\operatorname{Re}\theta_\alpha(a)\ge0\). The hypothesis is positivity of the twisted real part.</p>
+</section>
+
+<!-- 11 -->
+<section class="slide divider">
+  <div class="hand">Un</div>
+  <h1>Function theory</h1>
+  <p>Jin, 27 July 2026. Operator form: Hartz, unpublished notes, 31 July 2026.</p>
+</section>
+
+<!-- 12 -->
+<section class="slide">
+  <h2>Holomorphic → resolvent transfer</h2>
+  <div class="theorem"><span class="label">Theorem (Holomorphic → resolvent transfer; Jin, operator form Hartz).</span> Let \(T\in\mathcal B(\mathcal H)\) with \(\sigma(T)\subset\overline{\mathbb D}\). Let \(H:\mathbb D\to\mathcal B(\mathcal H)\) be holomorphic with \(H(0)=I\) and \(\operatorname{Re}H(z)\ge0\) for all \(z\in\mathbb D\). Assume that
+  \[ \Delta(z):=H(z)-(I-zT)^{-1} \]
+  commutes with \(T^*\) for all \(z\in\mathbb D\). Then \(\|T\|\le2\).</div>
+  <ul>
+    <li>\(\Delta=0\): \(\operatorname{Re}(I-zT)^{-1}\ge0\) on \(\mathbb D\) is Berger's condition \(W(T)\subset\overline{\mathbb D}\), and the conclusion is Okubo–Ando. A commuting correction costs nothing.</li>
+    <li>Transfer ⇒ twisted real part (Hartz). \(T=\theta(a)\), \(c_z=(1+za)(1-za)^{-1}\), \(H(z)=\theta_\alpha(c_z)\). Then \(\operatorname{Re}H\ge0\) and \(\Delta(z)=\tfrac12(\theta(\alpha(c_z))^*-I)\), an adjoint from the commutative algebra \(\theta(\mathcal A)\ni T\).</li>
+    <li>Concretely \(\Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^*\): the identity for every power of \(f\) at once.</li>
+  </ul>
+</section>
+
+<!-- 13 -->
+<section class="slide">
+  <h2>Proof of the transfer theorem</h2>
+  <p>On \(H^2\otimes\mathcal H\) (after scaling \(T\to rT\)), \(\operatorname{Re}M_H\ge0\) and \(M_H=M_R+M_\Delta\), \(R(z)=(I-zT)^{-1}\).</p>
+  <p>For \(W\) with \(\sigma(W)\subset\mathbb D\) let \(N_W=\{F=\sum F_nz^n:\ \sum W^nF_n=0\}\), the functions vanishing at \(W\).</p>
+  <ul>
+    <li>\(\Delta(z)\) commutes with \(W\) ⇒ \(M_\Delta N_W\subset N_W\) (an ideal, as in one variable).</li>
+    <li>\(\Delta(0)=0\) ⇒ the reproducing kernel \(\Gamma\) of \(N_W\) at \(0\) has \(\Gamma^*M_\Delta\Gamma=0\).</li>
+  </ul>
+  <p>Take \(W=\tfrac12T^*\): \(\ \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0\). The defect is removed exactly, not estimated.</p>
+  <p>Unwinding, with \(P=\sum4^{-n}T^{*n}T^n\), \(Q=\sum2^{-n}T^{*n}T^n\), \(Y=Q-P\ge\tfrac14T^*T\):
+  \[ 4Y-YP-PY\ge0\ \Rightarrow\ P\le2I\ \Rightarrow\ T^*T\le T^*PT=4(P-I)\le4I. \]</p>
+  <p class="remark">The weights \(4^{-n}\), \(2^{-n}\) come from sampling at radius \(\tfrac12\). Jin's coordinates: sample the Herglotz kernel of \(H\) at \(\lambda_i/2\) and at \(0\), the origin vector chosen to cancel the diagonal correction. Same compression.</p>
+</section>
+
+<!-- 14 -->
+<section class="slide divider">
+  <div class="hand">Deux</div>
+  <h1>Dilation theory</h1>
+  <p>Lorist and Schwenninger, arXiv 2608.03841, August 2026.</p>
+</section>
+
+<!-- 15 -->
+<section class="slide">
+  <h2>Dilation theory</h2>
+  <div class="theorem blue"><span class="label">Lemma (Lorist–Schwenninger).</span> Let \(\mathcal H\) be a Hilbert space and \(T\in\mathcal B(\mathcal H)\). Suppose there exist a Hilbert space \(\mathcal K\), a contraction \(Q\in\mathcal B(\mathcal K)\) and an isometry \(V\in\mathcal B(\mathcal H,\mathcal K)\) such that the operators
+  \[ E_n:=2V^*Q^{*n}V-T^{*n},\qquad n\in\mathbb N, \]
+  are uniformly bounded and commute with \(T\). Then \(\|T\|\le2\).</div>
+  <p>\(E_n=0\): \(T^*\) has a \(2\)-dilation and \(\|T\|=\|2V^*QV\|\le2\) at once. The lemma tolerates an error of any size, if bounded in \(n\) and commuting with \(T\).</p>
+  <p>The dilation is Stinespring for \(\Phi\): \(\mathcal K=L^2(\partial\Omega,ds;\mathcal H)\), \(Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x\) (an isometry because \(\int\mu=2I\)), \(Q=M_f\) with \(\|f\|_\infty=1\). Then \(V^*Q^nV=\Phi(f^n)\), and with \(T=f(A)\),
+  \[ E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A), \]
+  which commutes with \(f(A)\) and is bounded by \(\|\theta\|\|\alpha\|\). Hence \(\|f(A)\|\le2\). The contractivity of \(\alpha\) is never used.</p>
+</section>
+
+<!-- 16 -->
+<section class="slide">
+  <h2>Proof of the lemma</h2>
+  <p>\(\kappa:=\|T\|>1\) and \(x\) a unit vector with \(T^*Tx=\kappa^2x\) (ultrapower if necessary). Put
+  \[ m_n:=\operatorname{Re}\langle E_nT^nx,x\rangle,\qquad u:=Q^*VTx-\kappa Vx. \]
+  Two estimates on the same error vector:
+  \[ \begin{aligned}
+  \|u\|^2&\le 2\kappa^2-\kappa^3-\kappa m_1 &&\text{(}V\text{ isometric, }Q\text{ contractive, }n=1\text{ only)}\\
+  \kappa m_1&\ge-\frac{\|u\|^2}{(\kappa-1)^2} &&\text{(telescope }\kappa m_n-m_{n+1}\text{ over all }n\text{)}
+  \end{aligned} \]
+  Together, \(\|u\|^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa)\): impossible if \(\kappa>2\).</p>
+  <p class="remark">The first line alone gives \(\kappa\le1+\sqrt{1-m_1}\); with \(\|\alpha\|\le1\), \(m_1\ge-1\), and that is \(1+\sqrt2\) again. \(m_1<0\) happens for some \(3\times3\) matrices. The second line needs \(E_n\) for every \(n\).</p>
+</section>
+
+<!-- 17 -->
+<section class="slide">
+  <h2>The same proof twice</h2>
+  <table class="plain">
+    <tr><th></th><th class="o">Un (Jin, Hartz)</th><th class="b">Deux (Lorist–Schwenninger)</th></tr>
+    <tr><td>positivity</td><td>\(\operatorname{Re}H\ge0\)</td><td>\(\Phi=V^*\pi(\cdot)V\)</td></tr>
+    <tr><td>all powers</td><td>\(H(w)=I+2\sum_m w^m\Phi(f^m)\)</td><td>\(E_n\), every \(n\)</td></tr>
+    <tr><td>companion</td><td>\(\Delta(w)=\sum_m w^m\alpha(f^m)(T)^*\)</td><td>\(E_n=\alpha(f^n)(T)\)</td></tr>
+    <tr><td>used</td><td>commutes with \(T^*\)</td><td>commutes with \(T\)</td></tr>
+    <tr><td>removal</td><td>\(\Gamma^*M_\Delta\Gamma=0\)</td><td>telescoping sum</td></tr>
+  </table>
+  <p>Crouzeix–Palencia use the <i>size</i> of the companion and get \(1+\sqrt2\), which is sharp for that information. The new proofs use its <i>location</i>: the commutative algebra \(\{g(T)\}\) containing \(f(T)\). Its size is never used.</p>
+</section>
+
+<!-- 18 -->
+<section class="slide">
+  <h2>The canary</h2>
+  <p>What the papers say the model did.</p>
+  <ul>
+    <li><b>Jin.</b> ChatGPT proposed sampling the Herglotz kernel at \(\lambda_i/2\) and adding the origin sample that cancels the correction. That is the compression in the transfer proof.</li>
+    <li><b>Lorist–Schwenninger.</b> GPT-5.6, 25–26 July, asked for an improvement in estimates involving the iterates \(f^n\), pointed out that \(\Phi(f^{n+1})^*f(A)x-\|f(A)\|\Phi(f^n)^*x\) is controlled uniformly in \(n\) by the quantity behind \(m_1\). The lemma was abstracted from that. They saw Jin's preprint on 28 July.</li>
+    <li><b>Hartz.</b> ChatGPT to discuss Jin's preprint.</li>
+  </ul>
+  <p>The credited step is the same in both cases: stop estimating the companion of a single \(f\), and use the identity for all \(f^n\) simultaneously. The proofs were written and checked by the authors.</p>
+</section>
+
+<!-- 19 -->
+<section class="slide">
+  <h2>The completely bounded conjecture</h2>
+  <div class="theorem"><span class="label">Conjecture.</span> For every \(m\ge1\) and every \(F=[f_{ij}]\in M_m(A(\Omega))\), \(\ \|F(T)\|\le2\sup_{z\in\Omega}\|F(z)\|\).</div>
+  <p>Equivalently \(f\mapsto f(T)\) has cb-norm \(\le2\); by Paulsen, \(T\) is then similar to an operator having \(\overline{W(T)}\) as a complete spectral set.</p>
+  <p>Known: \(1+\sqrt2\) (Crouzeix–Palencia); \(2\) for disks, and for weighted shifts (Crouzeix–Greenbaum 2025).</p>
+  <p>Neither Un nor Deux amplifies: \(M_m(A(\Omega))\) is not commutative, and both proofs rest on the companion commuting with \(f(T)\). Crouzeix–Palencia rest only on \(\|\alpha\|\le1\), which survives.</p>
+  <p class="remark">As of last week: [reference], from the OpenAI SlopDrop (Burnstein, Iosevich, Krause, Yavicoli).</p>
+</section>
+
+<!-- 20 -->
+<section class="slide">
+  <h2>References</h2>
+  <ul class="small">
+    <li>S. Jin, <i>The numerical range is a 2-spectral set</i>, Preprints.org 202607.1919, 27 July 2026.</li>
+    <li>M. Hartz, <i>Notes on the solution of Crouzeix's conjecture</i>, 31 July 2026.</li>
+    <li>E. Lorist, F. L. Schwenninger, <i>A solution to Crouzeix's conjecture</i>, arXiv:2608.03841.</li>
+    <li>M. Crouzeix, <i>Bounds for analytical functions of matrices</i>, Integral Equations Operator Theory 48 (2004).</li>
+    <li>M. Crouzeix, C. Palencia, <i>The numerical range is a \((1+\sqrt2)\)-spectral set</i>, SIAM J. Matrix Anal. Appl. 38 (2017).</li>
+    <li>T. Ransford, F. L. Schwenninger, <i>Remarks on the Crouzeix–Palencia proof</i>, SIAM J. Matrix Anal. Appl. 39 (2018).</li>
+    <li>R. Clouâtre, M. Ostermann, T. Ransford, <i>An abstract approach to the Crouzeix conjecture</i>, J. Operator Theory 90 (2023).</li>
+    <li>K. Bickel, P. Gorkin, <i>Blaschke products, level sets, and Crouzeix's conjecture</i>, J. Anal. Math. 152 (2024).</li>
+    <li>B. Delyon, F. Delyon, <i>Generalization of von Neumann's spectral sets</i>, Bull. Soc. Math. France 127 (1999).</li>
+  </ul>
+  <p class="small dim">Beamer slides and speaker notes: <a href="slides/crouzeix_talk.pdf" style="color:var(--blue)">slides</a>, <a href="slides/crouzeix_talk_notes.pdf" style="color:var(--blue)">notes</a>, <a href="slides/crouzeix_talk.tex" style="color:var(--blue)">source</a>.</p>
+</section>
+
+</div>
+
+<div id="prev" style="position:fixed;left:0;top:0;width:12vw;height:100vh;cursor:w-resize"></div>
+<div id="next" style="position:fixed;right:0;top:0;width:12vw;height:100vh;cursor:e-resize"></div>
+<div id="hud"><div></div></div>
+<div id="help">← → to move</div>
+<div id="counter"></div>
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+<script src="js/domain.js"></script>
+<script src="js/numrange.js"></script>
+<script src="js/dlp.js"></script>
+<script src="js/identity.js"></script>
+<script src="js/slides.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.renderMathInElement) renderMathInElement(document.body, {
+      delimiters: [{ left: '\\[', right: '\\]', display: true }, { left: '\\(', right: '\\)', display: false }],
+      throwOnError: false
+    });
+  });
+</script>
+</body>
+</html>
