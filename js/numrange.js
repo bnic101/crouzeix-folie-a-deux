@@ -96,18 +96,18 @@
 
   var examples = {
     nilpotent: { name: 'N = [[0,1],[0,0]]', T: [[Z(), R(1)], [Z(), Z()]], eig: [Z(), Z()],
-      note: 'W(N) is the disk of radius 1/2. ||N|| = 1, so ||N|| / w(N) = 2.' },
+      note: 'W(N) = D(0, 1/2), ||N|| = 1.' },
     normal: { name: 'diag(1, i, -1)', T: [[R(1), Z(), Z()], [Z(), [0, 1], Z()], [Z(), Z(), R(-1)]], eig: [R(1), [0, 1], R(-1)],
-      note: 'Normal: W is the convex hull of the spectrum.' },
+      note: 'Normal: W = conv σ(T).' },
     ellipse: { name: '[[1,1],[0,-1]]', T: [[R(1), R(1)], [Z(), R(-1)]], eig: [R(1), R(-1)],
-      note: 'A 2x2 matrix: an ellipse with the eigenvalues as foci and minor axis |t12|.' },
+      note: 'Ellipse, foci at the eigenvalues, minor axis |t12|.' },
     jordan3: { name: 'J3(0), the 3x3 Jordan block', T: [[Z(), R(1), Z()], [Z(), Z(), R(1)], [Z(), Z(), Z()]], eig: [Z(), Z(), Z()],
-      note: 'W is the disk of radius cos(pi/4) = 0.707; ||T|| = 1. Ratio 1.41.' },
+      note: 'W = D(0, cos(π/4)).' },
     shift4: { name: 'weighted shift, weights 1, 0.5, 1', T: [[Z(), R(1), Z(), Z()], [Z(), Z(), R(0.5), Z()], [Z(), Z(), Z(), R(1)], [Z(), Z(), Z(), Z()]], eig: [Z(), Z(), Z(), Z()],
-      note: 'Nilpotent weighted shift: W is a disk about 0 (Crouzeix and Greenbaum, complete 2-spectral set).' },
+      note: 'Weighted shift: W a disc about 0.' },
     tri3: { name: '[[1,1,0],[0,i,1],[0,0,-1]]', T: [[R(1), R(1), Z()], [Z(), [0, 1], R(1)], [Z(), Z(), R(-1)]], eig: [R(1), [0, 1], R(-1)],
-      note: 'Same spectrum as the triangle, but now W is strictly larger than the convex hull.' },
-    custom: { name: 'upper triangular 2x2', custom: true, note: 'Eigenvalues l1, l2 on the real axis; the off-diagonal entry g sets the minor axis.' }
+      note: 'Same spectrum as diag(1, i, -1).' },
+    custom: { name: 'upper triangular 2x2', custom: true, note: '[[λ1, γ], [0, λ2]].' }
   };
 
   function init(root) {
@@ -138,7 +138,7 @@
       l2.setAttribute('stroke', 'rgba(233,229,218,' + (v === 0 ? 0.35 : 0.1) + ')'); g.grid.appendChild(l2);
     }
     var lab = mk('text'); lab.setAttribute('x', W - 12); lab.setAttribute('y', Hh - 12); lab.setAttribute('text-anchor', 'end');
-    lab.setAttribute('fill', '#7f7b72'); lab.setAttribute('font-size', '11'); lab.textContent = 'dashed: |z| = w(T) blue, |z| = ||T|| orange';
+    lab.setAttribute('fill', '#7f7b72'); lab.setAttribute('font-size', '11'); lab.textContent = 'blue: |z| = w(T). orange: |z| = ‖T‖';
     svg.appendChild(lab);
 
     function mk(t) { return document.createElementNS('http://www.w3.org/2000/svg', t); }
