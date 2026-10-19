@@ -286,38 +286,6 @@
 \note{[3 min] Website: $f(z)$ and the companion as vectors; $\Phi(f)(z)$ stays in the convex hull of $f(\partial\Omega)$. Disc: companion constant, so Berger--Stampfli is the identity read off. Extremal $f$ is a Blaschke product (Crouzeix 2004, Nevanlinna--Pick).}
 
 %======================================================================
-\begin{frame}{Crouzeix--Palencia, $1+\sqrt2$}
-  $K=C_\Omega$, $\norm{f}\le1$, $T=f(A)$, $g=\alpha(f)$, $\norm{g}\le\norm{f}$ ($\Omega$ convex).
-  \[
-    TT^*TT^*=T\,\big(T+g(A)^*\big)^*\,TT^*-(fgf)(A)\,T^*
-  \]
-  \[
-    K^4\le2K^3+K^2,\qquad K\le1+\sqrt2 .
-  \]
-  \hfill(Ransford--Schwenninger)
-
-  \bigskip
-  Uses only $\norm{f(A)+g(A)^*}\le2$ and $\norm g\le\norm f$.
-\end{frame}
-\note{[3 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma.}
-
-%======================================================================
-\begin{frame}{The lemma is sharp}
-  Sharp under those two facts (Ransford--Schwenninger 2018):
-  \[
-    T=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad \Omega=D(0,\tfrac14)\cup D(1,\tfrac14),
-  \]
-  $g=-f(0)$, $-f(1)$ on the two discs; $h=\mp1$: $\norm{h(T)}=1+\sqrt2$.
-
-  \medskip
-  Not a counterexample: $W(T)\not\subset\Omega$.
-
-  \bigskip
-  Here $g(1)=-1$, whereas the Cauchy transform has $\alpha(1)=1$. The lemma does not use $\alpha(1)=1$.
-\end{frame}
-\note{[4 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma. Example: $T^n=T$, $f(T)=\begin{pmatrix}f(1)&f(1)-f(0)\\0&f(0)\end{pmatrix}$, $h(T)=\begin{pmatrix}1&2\\0&-1\end{pmatrix}$.}
-
-%======================================================================
 \begin{frame}{Equivalent formulation}
   \begin{theorem}[Twisted real part]
     Let $\A$ be a unital commutative operator algebra, let $\theta:\A\to\B(\Hil)$ be a bounded homomorphism and let $\alpha:\A\to\A$ be a unital antilinear map such that the unital linear map
