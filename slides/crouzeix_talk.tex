@@ -173,7 +173,7 @@
   \end{tabular}}
 
   \medskip
-  \textbf{Technique}, 1999 to 2026: the double layer potential.
+  \textbf{Technique} (all of the above): the double layer potential.
 \end{frame}
 \note{[2 min] Delyon--Delyon: constant from diameter$^2$/area. Crouzeix 2007: hard estimates on the Cauchy transform. Crouzeix--Palencia: six pages, survives matrix-valued $f$. Nine years, then two proofs in a week.}
 
@@ -246,7 +246,7 @@
       \norm{S(f,T)}=\norm{f(T)+C(\bar f,T)^*}\le2\norm{f}_{\partial\Omega}.
     \]
   \end{lemma}
-  Positivity, mass $2I$, Cauchy--Schwarz.
+  Proof: $\mu\ge0$, $\int\mu\,ds=2I$, Cauchy--Schwarz.
 
   \bigskip
   So the question we must answer is: how does $\norm{S(f,T)}$ control $\norm{f(T)}$? In particular, can we estimate $C(\bar f,T)^*$ or make it vanish all together?
@@ -302,7 +302,7 @@
 \note{[3 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma.}
 
 %======================================================================
-\begin{frame}{Why not $2$}
+\begin{frame}{The lemma is sharp}
   Sharp under those two facts (Ransford--Schwenninger 2018):
   \[
     T=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad \Omega=D(0,\tfrac14)\cup D(1,\tfrac14),
@@ -313,7 +313,7 @@
   Not a counterexample: $W(T)\not\subset\Omega$.
 
   \bigskip
-  Here $g(1)=-1$. The Cauchy transform: $\alpha(1)=1$. Unused information: $\alpha$ is unital.
+  Here $g(1)=-1$, whereas the Cauchy transform has $\alpha(1)=1$. The lemma does not use $\alpha(1)=1$.
 \end{frame}
 \note{[4 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma. Example: $T^n=T$, $f(T)=\begin{pmatrix}f(1)&f(1)-f(0)\\0&f(0)\end{pmatrix}$, $h(T)=\begin{pmatrix}1&2\\0&-1\end{pmatrix}$.}
 
@@ -357,35 +357,33 @@
 
 %======================================================================
 \begin{frame}{Transfer $\Rightarrow$ twisted real part (Hartz)}
-  $T=\theta(a)$, $\norm a\le1$, $c_z=(1+za)(1-za)^{-1}$, $H(z)=\theta_\alpha(c_z)$.
-
-  \medskip
-  Then $\re H\ge0$, and
+  Let $a\in\A$, $\norm a\le1$, $T=\theta(a)$. For $z\in\D$ the Cayley transform $c_z=(1+za)(1-za)^{-1}$ has $\re c_z\ge0$, and $\theta_\alpha$ is positive, so
+  \[
+    H(z):=\theta_\alpha(c_z)
+  \]
+  is holomorphic with $H(0)=I$ and $\re H(z)\ge0$. Since $\theta$ is a homomorphism, $\theta(c_z)=2(I-zT)^{-1}-I$, hence
   \[
     H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big),
   \]
-  an adjoint from the commutative algebra $\theta(\A)\ni T$.
-
-  \bigskip
-  Concretely, $\theta(f)=f(T)$:
-  \[
-    \Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^* .
-  \]
-  Every power of $f$ at once.
+  the adjoint of an element of $\theta(\A)$, which is commutative and contains $T$. So $H(z)-(I-zT)^{-1}$ commutes with $T^*$, and the transfer theorem gives $\norm{\theta(a)}\le2$.
 \end{frame}
-\note{[4 min] $H$: Carath\'eodory function normalised at $0$. Class $C_\rho$: $(\rho-2)I+2\re(I-zT)^{-1}\ge0$; $\rho=2$ is $w(T)\le1$. Cayley transform has positive real part; unital contraction preserves it; $\theta(c_z)=2(I-zT)^{-1}-I$. Crouzeix--Palencia used the identity once.}
+\note{[4 min] $\re c_z=(1-za)^{-*}(I-|z|^2a^*a)(1-za)^{-1}\ge0$. For $\theta(f)=f(T)$, expanding $c_w$ in powers of $f$: $H(w)-(I-wT)^{-1}=\sum_{m\ge1}w^m\alpha(f^m)(T)^*$; the identity for all powers of $f$. Crouzeix--Palencia used it once.}
 
 %======================================================================
-\begin{frame}{Proof: compress}
-  $\Delta(z):=H(z)-(I-zT)^{-1}$, $R(z):=(I-zT)^{-1}$. On $H^2\otimes\Hil$: $\re M_H\ge0$, $M_H=M_R+M_\Delta$.
+\begin{frame}{Proof of the transfer theorem, I}
+  $R(z)=(I-zT)^{-1}$, $\Delta=H-R$. On $H^2\otimes\Hil$ ($\Hil$-valued power series), $\re H\ge0$ gives $\re M_H\ge0$, and $M_H=M_R+M_\Delta$.
 
   \medskip
-  $N_W:=\{F=\sum F_nz^n:\ \sum W^nF_n=0\}$, $\sigma(W)\subset\D$.
+  For $W$ with $\sigma(W)\subset\D$, the functions vanishing at $W$:
+  \[
+    N_W=\{F=\textstyle\sum F_nz^n:\ \sum W^nF_n=0\},
+  \]
+  and $\Gamma:\Hil\to N_W$ its reproducing kernel at $0$.
   \begin{itemize}
-    \item $\Delta(z)W=W\Delta(z)$ $\Rightarrow$ $M_\Delta N_W\subset N_W$.
-    \item $\Delta(0)=0$, $\Gamma$ the kernel of $N_W$ at $0$ $\Rightarrow$ $\Gamma^*M_\Delta\Gamma=0$.
+    \item If $\Delta(z)$ commutes with $W$, then $M_\Delta N_W\subset N_W$.
+    \item Since $\Delta(0)=0$, $\Gamma^*M_\Delta\Gamma=0$.
   \end{itemize}
-  $W=\tfrac12T^*$:
+  Take $W=\tfrac12T^*$. Then
   \[
     \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0 .
   \]
@@ -393,23 +391,24 @@
 \note{[3 min] Functions vanishing at an operator point form an ``ideal'' when $\Delta$ commutes with $W$; kernel at $0$ kills $M_\Delta$ since $\Delta(0)=0$. Defect removed exactly, not estimated.}
 
 %======================================================================
-\begin{frame}{Proof: unwind}
+\begin{frame}{Proof of the transfer theorem, II}
+  Explicitly $\Gamma=K_0-K_WP^{-1}$, with $K_W$ the kernel map at $W$,
   \[
-    P=\sum_{n\ge0}4^{-n}T^{*n}T^n,\qquad Q=\sum_{n\ge0}2^{-n}T^{*n}T^n,
+    P=K_W^*K_W=\sum_{n\ge0}4^{-n}T^{*n}T^n,
   \]
-  $Y=Q-P\ge\tfrac14T^*T$.
   \[
-    4Y-YP-PY\ge0\ \Rightarrow\ P\le2I,
+    Q=K_W^*K_{T^*}=\sum_{n\ge0}2^{-n}T^{*n}T^n .
   \]
-  Stein: $P=I+\tfrac14T^*PT$, so
+  The resolvent identity turns the last inequality into
+  \[
+    4Y-YP-PY\ge0,\qquad Y=Q-P\ge\tfrac14T^*T .
+  \]
+  If $Px=\alpha x$ with $\alpha>2$, testing on $x$ gives $(4-2\alpha)\ip{Yx}{x}\ge0$, so $Yx=0$, so $Tx=0$, so $Px=x$. Hence $P\le2I$. With $P=I+\tfrac14T^*PT$,
   \[
     T^*T\le T^*PT=4(P-I)\le4I .
   \]
-
-  \bigskip
-  Jin: sample the Herglotz kernel of $H$ at $\lambda_i/2$ and at $0$.
 \end{frame}
-\note{[4 min] Functions vanishing at an operator point form an ``ideal'' when $\Delta$ commutes with $W$; kernel at $0$ kills $M_\Delta$ since $\Delta(0)=0$. Defect removed exactly, not estimated. Weights $4^{-n},2^{-n}$ from sampling radius $\frac12$. Appendix: $\Gamma=K_0-K_WP^{-1}$, eigenvector argument, Stein $P=I+\frac14T^*PT$.}
+\note{[4 min] Functions vanishing at an operator point form an ``ideal'' when $\Delta$ commutes with $W$; kernel at $0$ kills $M_\Delta$ since $\Delta(0)=0$. Defect removed exactly, not estimated. Weights $4^{-n},2^{-n}$ from sampling radius $\frac12$. Jin does this in coordinates: sample the Herglotz kernel at $\lambda_i/2$ and at $0$. Appendix: $\Gamma=K_0-K_WP^{-1}$, eigenvector argument, Stein $P=I+\frac14T^*PT$.}
 
 %======================================================================
 \begin{frame}
@@ -435,37 +434,50 @@
 
 %======================================================================
 \begin{frame}{Lemma $\Rightarrow$ Crouzeix}
-  $\K=L^2(\partial\Omega,ds;\Hil)$, $Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x$, $Q=M_f$, $\norm f_\infty=1$, $T=f(A)$:
+  Let $\K=L^2(\partial\Omega,ds;\Hil)$ and $Vx=\tfrac1{\sqrt2}\mu(\cdot,A)^{1/2}x$; $V$ is an isometry because $\int\mu\,ds=2I$. For $\norm f_\infty=1$ let $Q$ be multiplication by $f$, a contraction. Then
   \[
-    V^*Q^nV=\Phi(f^n),
+    V^*Q^nV=\tfrac12\int f^n\mu\,ds=\Phi(f^n),
   \]
+  and the identity for $f^n$, adjointed, gives with $T=f(A)$
   \[
     E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A).
   \]
-  \begin{itemize}
-    \item $E_n$ commutes with $f(A)$; $\norm{E_n}\le\norm\theta\norm\alpha$. Hence $\norm{f(A)}\le2$.
-    \item Stinespring for $\Phi$; $V$ isometric since $\int\mu\,ds=2I$.
-    \item $\norm\alpha\le1$ not used.
-  \end{itemize}
+  $E_n$ commutes with $f(A)$ (both come from the functional calculus) and $\norm{E_n}\le\norm\theta\norm\alpha$. The lemma gives $\norm{f(A)}\le2$. The bound $\norm\alpha\le1$ is not used.
 \end{frame}
 \note{[4 min] A genuine dilation of $\Phi$, a perturbed $2$-dilation of $f(A)$, error exactly the companion. Commutes: same functional calculus. Bounded: Crouzeix 2007 had $9.08$. Abstract form: $\theta_\alpha$ completely positive $\Rightarrow\norm\theta\le2$ (Arveson, Stinespring).}
 
 %======================================================================
-\begin{frame}{Proof}
-  $\kappa:=\norm{T}>1$, $T^*Tx=\kappa^2x$, $\norm x=1$ (ultrapower).
+\begin{frame}{Proof of the lemma, I}
+  Suppose $\kappa=\norm T>1$ and take a unit $x$ with $T^*Tx=\kappa^2x$ (ultrapower). Put $m_n=\re\ip{E_nT^nx}{x}$ and
   \[
-    m_n:=\re\ip{E_nT^nx}{x},\qquad u:=Q^*VTx-\kappa Vx .
+    u=Q^*VTx-\kappa Vx,
   \]
-  \begin{align*}
-    \norm{u}^2&\le 2\kappa^2-\kappa^3-\kappa m_1 && (n=1)\\[2pt]
-    \kappa m_1&\ge-\frac{\norm{u}^2}{(\kappa-1)^2} && (\text{all } n)
-  \end{align*}
-  \[
-    \norm{u}^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa) .
-  \]
+  the failure of $VTx$ to be a $\kappa$-eigenvector of $Q^*$.
 
   \medskip
-  First line alone: $\kappa\le1+\sqrt{1-m_1}$; $m_1\ge-1$ gives $1+\sqrt2$. $m_1<0$ for some $3\times3$.
+  From the identity for $n=1$, $V$ isometric and $Q$ contractive:
+  \[
+    \norm{u}^2\le 2\kappa^2-\kappa^3-\kappa m_1 .
+  \]
+  This alone gives $\kappa\le1+\sqrt{1-m_1}$; $m_1\ge-1$ gives $1+\sqrt2$, and $m_1<0$ for some $3\times3$ matrices.
+\end{frame}
+\note{[2 min] $m_1=\re\ip{(f\alpha(f))(A)x}{x}$, central since Crouzeix--Palencia. $m_1\ge0$ would finish; false in general.}
+
+%======================================================================
+\begin{frame}{Proof of the lemma, II}
+  From the identities for all $n$ and $E_nT=TE_n$, completing a square,
+  \[
+    \kappa m_n-m_{n+1}\ge-\frac{\norm u^2}{\kappa(\kappa-1)}\qquad(n\ge1).
+  \]
+  Multiply by $\kappa^{-n+1}$ and sum; the left side telescopes:
+  \[
+    \kappa m_1\ge-\frac{\norm{u}^2}{(\kappa-1)^2} .
+  \]
+  With the upper bound,
+  \[
+    \norm{u}^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa),
+  \]
+  impossible for $\kappa>2$.
 \end{frame}
 \note{[4 min] $u$: failure of $VTx$ to be a $\kappa$-eigenvector of $Q^*$. Upper bound: $n=1$ only; $m_1=\re\ip{(f\alpha(f))(A)x}{x}$, central since Crouzeix--Palencia. Lower bound: commutation plus the identity for $n+1$, summed with weights $\kappa^{-n+1}$. $m_1\ge0$ would finish; false in general. Appendix: both estimates.}
 
@@ -483,20 +495,19 @@
   \end{tabular}
 
   \bigskip
-  Crouzeix--Palencia use the \emph{size} of the companion, $\norm{\alpha(f)}\le\norm f$: sharp at $1+\sqrt2$.
-  The new proofs use its \emph{location}, the commutative algebra $\{g(T)\}\ni f(T)$.
+  Crouzeix--Palencia use $\norm{\alpha(f)}\le\norm f$; that alone cannot give better than $1+\sqrt2$.
+  Both new proofs use instead that $\alpha(f^n)(T)$ commutes with $f(T)$.
 \end{frame}
 \note{[3 min] Same positivity (Carath\'eodory function / Stinespring), same packaging of all powers, same companion, same commutation hypothesis; compression vs. telescoping.}
 
 %======================================================================
 \begin{frame}{The canary}
-  What the papers say the model did.
+  From the AI disclosure statements.
   \begin{itemize}
     \item Jin: ChatGPT proposed sampling the Herglotz kernel at $\lambda_i/2$ and adding the origin sample that cancels the correction.
     \item Lorist--Schwenninger: GPT-5.6, 25--26 July, asked about estimates involving the iterates $f^n$. Pointed at $\Phi(f^{n+1})^*f(A)x-\norm{f(A)}\Phi(f^n)^*x$, controlled uniformly in $n$. Lemma abstracted from that. Saw Jin's preprint 28 July.
     \item Hartz: ChatGPT to discuss Jin's preprint.
   \end{itemize}
-  Same step twice: one $f$ $\to$ all $f^n$.
 \end{frame}
 \note{[2 min] Read as written. Proofs written and checked by the authors.}
 

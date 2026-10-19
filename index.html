@@ -124,7 +124,7 @@
     <tr class="hl"><td>Jin</td><td>27 July 2026</td><td>\(2\)</td><td>function theory</td></tr>
     <tr class="hl"><td>Lorist–Schwenninger</td><td>Aug 2026</td><td>\(2\)</td><td>dilation theory</td></tr>
   </table>
-  <p><b>Technique</b>, 1999 to 2026: the double layer potential.</p>
+  <p><b>Technique</b> (all of the above): the double layer potential.</p>
 </section>
 
 <!-- 6 -->
@@ -178,7 +178,7 @@
   <h2>The question</h2>
   <div class="theorem"><span class="label">Lemma (Crouzeix–Palencia 2017).</span> For \(f\in C(\partial\Omega)\),
   \[ \|S(f,T)\|=\|f(T)+C(\bar f,T)^*\|\le2\|f\|_{\partial\Omega}. \]</div>
-  <p class="remark">Positivity, mass \(2I\), Cauchy–Schwarz.</p>
+  <p class="remark">Proof: \(\mu\ge0\), \(\int\mu\,ds=2I\), Cauchy–Schwarz.</p>
   <p>So the question we must answer is: how does \(\|S(f,T)\|\) control \(\|f(T)\|\)? In particular, can we estimate \(C(\bar f,T)^*\) or make it vanish all together?</p>
 </section>
 
@@ -228,12 +228,12 @@
 </section>
 
 <section class="slide">
-  <h2>Why not \(2\)</h2>
+  <h2>The lemma is sharp</h2>
   <p>Sharp under those two facts (Ransford–Schwenninger 2018):
   \[ T=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad \Omega=D(0,\tfrac14)\cup D(1,\tfrac14), \]
   \(g=-f(0)\), \(-f(1)\) on the two discs; \(h=\mp1\): \(\|h(T)\|=1+\sqrt2\).</p>
   <p>Not a counterexample: \(W(T)\not\subset\Omega\).</p>
-  <p>Here \(g(1)=-1\). The Cauchy transform: \(\alpha(1)=1\). Unused information: \(\alpha\) is unital.</p>
+  <p>Here \(g(1)=-1\), whereas the Cauchy transform has \(\alpha(1)=1\). The lemma does not use \(\alpha(1)=1\).</p>
 </section>
 
 <!-- 10 -->
@@ -264,36 +264,37 @@
 
 <section class="slide">
   <h2>Transfer ⇒ twisted real part (Hartz)</h2>
-  <p>\(T=\theta(a)\), \(\|a\|\le1\), \(c_z=(1+za)(1-za)^{-1}\), \(H(z)=\theta_\alpha(c_z)\).</p>
-  <p>Then \(\operatorname{Re}H\ge0\), and
+  <p>Let \(a\in\mathcal A\), \(\|a\|\le1\), \(T=\theta(a)\). For \(z\in\mathbb D\) the Cayley transform \(c_z=(1+za)(1-za)^{-1}\) has \(\operatorname{Re}c_z\ge0\), and \(\theta_\alpha\) is positive, so
+  \[ H(z):=\theta_\alpha(c_z) \]
+  is holomorphic with \(H(0)=I\) and \(\operatorname{Re}H(z)\ge0\). Since \(\theta\) is a homomorphism, \(\theta(c_z)=2(I-zT)^{-1}-I\), hence
   \[ H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big), \]
-  an adjoint from the commutative algebra \(\theta(\mathcal A)\ni T\).</p>
-  <p>Concretely, \(\theta(f)=f(T)\):
-  \[ \Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^*. \]
-  Every power of \(f\) at once.</p>
+  the adjoint of an element of \(\theta(\mathcal A)\), which is commutative and contains \(T\). So \(H(z)-(I-zT)^{-1}\) commutes with \(T^*\), and the transfer theorem gives \(\|\theta(a)\|\le2\).</p>
 </section>
 
 <!-- 13 -->
 <section class="slide">
-  <h2>Proof: compress</h2>
-  <p>\(\Delta(z):=H(z)-(I-zT)^{-1}\), \(R(z):=(I-zT)^{-1}\). On \(H^2\otimes\mathcal H\): \(\operatorname{Re}M_H\ge0\), \(M_H=M_R+M_\Delta\).</p>
-  <p>\(N_W:=\{F=\sum F_nz^n:\ \sum W^nF_n=0\}\), \(\sigma(W)\subset\mathbb D\).</p>
+  <h2>Proof of the transfer theorem, I</h2>
+  <p>Write \(R(z)=(I-zT)^{-1}\) and \(\Delta=H-R\). On the Hardy space \(H^2\otimes\mathcal H\) of \(\mathcal H\)-valued power series, \(\operatorname{Re}H\ge0\) gives \(\operatorname{Re}M_H\ge0\) for the multiplication operator, and \(M_H=M_R+M_\Delta\).</p>
+  <p>We want a subspace on which \(M_\Delta\) is invisible. For \(W\) with \(\sigma(W)\subset\mathbb D\) let
+  \[ N_W=\{F=\textstyle\sum F_nz^n:\ \sum W^nF_n=0\}, \]
+  the functions vanishing at \(W\), and \(\Gamma:\mathcal H\to N_W\) its reproducing kernel at \(0\).</p>
   <ul>
-    <li>\(\Delta(z)W=W\Delta(z)\) ⇒ \(M_\Delta N_W\subset N_W\).</li>
-    <li>\(\Delta(0)=0\), \(\Gamma\) the kernel of \(N_W\) at \(0\) ⇒ \(\Gamma^*M_\Delta\Gamma=0\).</li>
+    <li>If \(\Delta(z)\) commutes with \(W\), then \(M_\Delta N_W\subset N_W\).</li>
+    <li>Since \(\Delta(0)=0\), \(\Gamma^*M_\Delta\Gamma=0\).</li>
   </ul>
-  <p>\(W=\tfrac12T^*\):
+  <p>Take \(W=\tfrac12T^*\). Then
   \[ \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0. \]</p>
 </section>
 
 <section class="slide">
-  <h2>Proof: unwind</h2>
-  <p>\[ P=\sum_{n\ge0}4^{-n}T^{*n}T^n,\qquad Q=\sum_{n\ge0}2^{-n}T^{*n}T^n, \]
-  \(Y=Q-P\ge\tfrac14T^*T\).
-  \[ 4Y-YP-PY\ge0\ \Rightarrow\ P\le2I, \]
-  Stein: \(P=I+\tfrac14T^*PT\), so
-  \[ T^*T\le T^*PT=4(P-I)\le4I. \]</p>
-  <p>Jin: sample the Herglotz kernel of \(H\) at \(\lambda_i/2\) and at \(0\).</p>
+  <h2>Proof of the transfer theorem, II</h2>
+  <p>\(\Gamma\) can be written down: \(\Gamma=K_0-K_WP^{-1}\), with \(K_W\) the kernel map at \(W\) and
+  \[ P=K_W^*K_W=\sum_{n\ge0}4^{-n}T^{*n}T^n,\qquad Q=K_W^*K_{T^*}=\sum_{n\ge0}2^{-n}T^{*n}T^n. \]
+  The resolvent identity turns the inequality of the last slide into
+  \[ 4Y-YP-PY\ge0,\qquad Y=Q-P\ge\tfrac14T^*T. \]
+  If \(Px=\alpha x\) with \(\alpha>2\), testing on \(x\) gives \((4-2\alpha)\langle Yx,x\rangle\ge0\), so \(Yx=0\), so \(Tx=0\), so \(Px=x\). Hence \(P\le2I\). With \(P=I+\tfrac14T^*PT\),
+  \[ T^*T\le T^*PT=4(P-I)\le4I. \]
+</p>
 </section>
 
 <!-- 14 -->
@@ -312,27 +313,33 @@
 
 <section class="slide">
   <h2>Lemma ⇒ Crouzeix</h2>
-  <p>\(\mathcal K=L^2(\partial\Omega,ds;\mathcal H)\), \(Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x\), \(Q=M_f\), \(\|f\|_\infty=1\), \(T=f(A)\):
-  \[ V^*Q^nV=\Phi(f^n), \]
-  \[ E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A). \]</p>
-  <ul>
-    <li>\(E_n\) commutes with \(f(A)\); \(\|E_n\|\le\|\theta\|\|\alpha\|\). Hence \(\|f(A)\|\le2\).</li>
-    <li>Stinespring for \(\Phi\); \(V\) isometric since \(\int\mu\,ds=2I\).</li>
-    <li>\(\|\alpha\|\le1\) not used.</li>
-  </ul>
+  <p>Let \(\mathcal K=L^2(\partial\Omega,ds;\mathcal H)\) and \(Vx=\tfrac1{\sqrt2}\mu(\cdot,A)^{1/2}x\); \(V\) is an isometry because \(\int\mu\,ds=2I\). For \(\|f\|_\infty=1\) let \(Q\) be multiplication by \(f\), a contraction. Then
+  \[ V^*Q^nV=\tfrac12\int f^n\mu\,ds=\Phi(f^n), \]
+  and the identity for \(f^n\), adjointed, gives with \(T=f(A)\)
+  \[ E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A). \]
+  \(E_n\) commutes with \(f(A)\) (both come from the functional calculus) and \(\|E_n\|\le\|\theta\|\|\alpha\|\). The lemma gives \(\|f(A)\|\le2\). The bound \(\|\alpha\|\le1\) is not used.</p>
 </section>
 
 <!-- 16 -->
 <section class="slide">
-  <h2>Proof</h2>
-  <p>\(\kappa:=\|T\|>1\), \(T^*Tx=\kappa^2x\), \(\|x\|=1\) (ultrapower).
-  \[ m_n:=\operatorname{Re}\langle E_nT^nx,x\rangle,\qquad u:=Q^*VTx-\kappa Vx. \]
-  \[ \begin{aligned}
-  \|u\|^2&\le 2\kappa^2-\kappa^3-\kappa m_1 && (n=1)\\
-  \kappa m_1&\ge-\frac{\|u\|^2}{(\kappa-1)^2} && (\text{all }n)
-  \end{aligned} \]
-  \[ \|u\|^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa). \]</p>
-  <p>First line alone: \(\kappa\le1+\sqrt{1-m_1}\); \(m_1\ge-1\) gives \(1+\sqrt2\). \(m_1<0\) for some \(3\times3\).</p>
+  <h2>Proof of the lemma, I</h2>
+  <p>Suppose \(\kappa=\|T\|>1\) and take a unit \(x\) with \(T^*Tx=\kappa^2x\) (ultrapower). Put \(m_n=\operatorname{Re}\langle E_nT^nx,x\rangle\) and
+  \[ u=Q^*VTx-\kappa Vx, \]
+  the failure of \(VTx\) to be a \(\kappa\)-eigenvector of \(Q^*\).</p>
+  <p>From the identity for \(n=1\), \(V\) isometric and \(Q\) contractive:
+  \[ \|u\|^2\le 2\kappa^2-\kappa^3-\kappa m_1. \]
+  This alone gives \(\kappa\le1+\sqrt{1-m_1}\); \(m_1\ge-1\) gives \(1+\sqrt2\), and \(m_1<0\) for some \(3\times3\) matrices.</p>
+</section>
+
+<section class="slide">
+  <h2>Proof of the lemma, II</h2>
+  <p>From the identities for all \(n\) and \(E_nT=TE_n\), completing a square,
+  \[ \kappa m_n-m_{n+1}\ge-\frac{\|u\|^2}{\kappa(\kappa-1)}\qquad(n\ge1). \]
+  Multiply by \(\kappa^{-n+1}\) and sum; the left side telescopes:
+  \[ \kappa m_1\ge-\frac{\|u\|^2}{(\kappa-1)^2}. \]
+  With the upper bound,
+  \[ \|u\|^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa), \]
+  impossible for \(\kappa>2\).</p>
 </section>
 
 <!-- 17 -->
@@ -346,19 +353,18 @@
     <tr><td>used</td><td>commutes with \(T^*\)</td><td>commutes with \(T\)</td></tr>
     <tr><td>removal</td><td>\(\Gamma^*M_\Delta\Gamma=0\)</td><td>telescoping</td></tr>
   </table>
-  <p>Crouzeix–Palencia use the <i>size</i> of the companion, \(\|\alpha(f)\|\le\|f\|\): sharp at \(1+\sqrt2\). The new proofs use its <i>location</i>, the commutative algebra \(\{g(T)\}\ni f(T)\).</p>
+  <p>Crouzeix–Palencia use \(\|\alpha(f)\|\le\|f\|\); that alone cannot give better than \(1+\sqrt2\). Both new proofs use instead that \(\alpha(f^n)(T)\) commutes with \(f(T)\).</p>
 </section>
 
 <!-- 18 -->
 <section class="slide">
   <h2>The canary</h2>
-  <p>What the papers say the model did.</p>
+  <p>From the AI disclosure statements.</p>
   <ul>
     <li>Jin: ChatGPT proposed sampling the Herglotz kernel at \(\lambda_i/2\) and adding the origin sample that cancels the correction.</li>
     <li>Lorist–Schwenninger: GPT-5.6, 25–26 July, asked about estimates involving the iterates \(f^n\). Pointed at \(\Phi(f^{n+1})^*f(A)x-\|f(A)\|\Phi(f^n)^*x\), controlled uniformly in \(n\). Lemma abstracted from that. Saw Jin's preprint 28 July.</li>
     <li>Hartz: ChatGPT to discuss Jin's preprint.</li>
   </ul>
-  <p>Same step twice: one \(f\) → all \(f^n\).</p>
 </section>
 
 <!-- 19 -->
