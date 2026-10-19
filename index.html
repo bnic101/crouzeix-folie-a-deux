@@ -73,7 +73,7 @@
     <tr><th class="o">von Neumann</th><th class="b">Sz.-Nagy</th></tr>
     <tr><td>function theory</td><td>dilation theory</td></tr>
     <tr><td>Blaschke products</td><td>unitary dilation of \(T\)</td></tr>
-    <tr><td>Möbius maps: \(I-\varphi_a(T)^*\varphi_a(T)\ge0\)</td><td>\(p(T)=P_{\mathcal H}\,p(U)|_{\mathcal H}\)</td></tr>
+    <tr><td>Möbius: \(I-\varphi_a(T)^*\varphi_a(T)\ge0\)</td><td>\(p(T)=P_{\mathcal H}\,p(U)|_{\mathcal H}\)</td></tr>
   </table>
 </section>
 
@@ -83,9 +83,14 @@
   <div class="theorem"><span class="label">Conjecture (Crouzeix 2004).</span> Let \(T\) be a bounded operator on a Hilbert space \(\mathcal H\). The numerical range \(\overline{W(T)}\) is a \(2\)-spectral set for \(T\).</div>
   <div class="cols wide-left">
     <div>
-      <p><b>Remark.</b> This conjectured bound is sharp:
-      \[ W\!\begin{pmatrix}0&1\\0&0\end{pmatrix}=D(0,\tfrac12),\qquad p(z)=z, \]
-      \[ \Big\|\begin{pmatrix}0&1\\0&0\end{pmatrix}\Big\|=1=2\cdot\tfrac12=2\sup_{D(0,1/2)}|p(z)|. \]</p>
+      <p><b>Remark.</b> Sharp: for \(N=\begin{pmatrix}0&1\\0&0\end{pmatrix}\) and \(p(z)=z\), \(W(N)=D(0,\tfrac12)\) and \(\|N\|=1=2\cdot\tfrac12\).</p>
+      <p><b>Antecedents.</b></p>
+      <ul>
+        <li>von Neumann: constant \(1\), only for contractions.</li>
+        <li>Okubo–Ando 1975, Berger–Stampfli 1967: the disc is a \(2\)-spectral set.</li>
+        <li>Via \(2\)-dilations: \(W(T)\subset\overline{\mathbb D}\) iff \(T^n=2V^*U^nV\) (Berger).</li>
+        <li>Crouzeix 2004: true for \(2\times2\), equality only when \(W(T)\) is a disc.</li>
+      </ul>
     </div>
     <div class="viz">
       <svg viewBox="0 0 300 300">
@@ -100,17 +105,6 @@
     </div>
   </div>
 </section>
-
-<section class="slide fill">
-  <h2>Antecedents</h2>
-  <ul class="big">
-    <li>von Neumann: constant \(1\), only for contractions.</li>
-    <li>Okubo–Ando 1975, Berger–Stampfli 1967: the disc is a \(2\)-spectral set.</li>
-    <li>Via \(2\)-dilations: \(W(T)\subset\overline{\mathbb D}\) iff \(T^n=2V^*U^nV\) (Berger).</li>
-    <li>Crouzeix 2004: true for \(2\times2\), equality only when \(W(T)\) is a disc.</li>
-  </ul>
-</section>
-
 <!-- 5 -->
 <section class="slide">
   <h2>Constants</h2>

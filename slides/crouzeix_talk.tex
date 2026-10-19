@@ -115,12 +115,12 @@
 \begin{frame}{Two proofs of von Neumann}
   \vfill
   \begin{center}
-  \large
+  \setlength{\tabcolsep}{4pt}
   \begin{tabular}{@{}l|l@{}}
     von Neumann & Sz.-Nagy\\[8pt]
     function theory & dilation theory\\[8pt]
     Blaschke products & unitary dilation of $T$\\[8pt]
-    M\"obius maps: $I-\varphi_a(T)^*\varphi_a(T)\ge0$ & $p(T)=P_\Hil\,p(U)|_\Hil$
+    M\"obius: $I-\varphi_a(T)^*\varphi_a(T)\ge0$ & $p(T)=P_\Hil\,p(U)|_\Hil$
   \end{tabular}
   \end{center}
   \vfill
@@ -133,28 +133,18 @@
     Let $T$ be a bounded operator on a Hilbert space $\Hil$. The numerical range $\overline{W(T)}$ is a $2$-spectral set for $T$.
   \end{block}
 
-  \medskip
-  \textbf{Remark.} This conjectured bound is sharp:
-  \[
-    W\!\begin{pmatrix}0&1\\0&0\end{pmatrix}=D(0,\tfrac12),\qquad p(z)=z,
-  \]
-  \[
-    \Big\|\begin{pmatrix}0&1\\0&0\end{pmatrix}\Big\|=1=2\cdot\tfrac12=2\sup_{D(0,1/2)}|p(z)|.
-  \]
-\end{frame}
-\note{[2 min] $\ip{Nx}{x}=x_2\bar x_1$.}
+  \textbf{Remark.} Sharp: for $N=\begin{pmatrix}0&1\\0&0\end{pmatrix}$ and $p(z)=z$, $W(N)=D(0,\tfrac12)$ and $\norm N=1=2\cdot\tfrac12$.
 
-%======================================================================
-\begin{frame}{Antecedents}
-  \large
-  \begin{itemize}
+  \smallskip
+  \textbf{Antecedents.}
+  \begin{itemize}\small
     \item von Neumann: constant $1$, only for contractions.
     \item Okubo--Ando 1975, Berger--Stampfli 1967: the disc is a $2$-spectral set.
     \item Via $2$-dilations: $W(T)\subset\overline\D$ iff $T^n=2V^*U^nV$ (Berger).
     \item Crouzeix 2004: true for $2\times2$, equality only when $W(T)$ is a disc.
   \end{itemize}
 \end{frame}
-\note{[3 min] Constant $2$ for the disc is a theorem, not a triviality: Berger--Stampfli need $p(0)=0$, Okubo--Ando remove it. $2\times2$: exact constant as a function of the eccentricity.}
+\note{[4 min] $\ip{Nx}{x}=x_2\bar x_1$. Constant $2$ for the disc is a theorem, not a triviality: Berger--Stampfli need $p(0)=0$, Okubo--Ando remove it. $2\times2$: exact constant as a function of the eccentricity.}
 
 %======================================================================
 \begin{frame}{Constants}
