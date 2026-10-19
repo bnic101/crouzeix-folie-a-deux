@@ -6,7 +6,7 @@
   var ctx = canvas.getContext('2d');
   var tools = overlay.querySelector('.scratch-tools');
   var colors = { chalk: '#e9e5da', orange: '#f2b07a', blue: '#9cc9ea' };
-  var state = { open: false, color: colors.chalk, width: 3, eraser: false, drawing: false, last: null, penSeen: 0 };
+  var state = { open: false, color: colors.chalk, width: 3, eraser: false, drawing: false, last: null, penSeen: 0, penOnly: false };
   var store = {};       // slide index -> ImageData
   var slideIndex = 0;
 
@@ -46,11 +46,22 @@
     return base;
   }
 
+  function setPenOnly(v) {
+    state.penOnly = v;
+    var b = tools.querySelector('[data-act=penonly]');
+    if (b) b.classList.toggle('on', v);
+  }
+  function rejected(e) {
+    // Palm rejection: once a pen has been used, only the pen draws.
+    if (e.pointerType === 'pen') { state.penSeen = Date.now(); if (!state.penOnly) setPenOnly(true); return false; }
+    if (state.penOnly && e.pointerType === 'touch') return true;
+    if (e.pointerType === 'touch' && Date.now() - state.penSeen < 3000) return true;
+    return false;
+  }
   function down(e) {
     if (e.target !== canvas) return;
-    if (e.pointerType === 'pen') state.penSeen = Date.now();
-    if (e.pointerType === 'touch' && Date.now() - state.penSeen < 3000) return; // palm while using a pen
-    canvas.setPointerCapture(e.pointerId);
+    if (rejected(e)) { e.preventDefault(); return; }
+    try { canvas.setPointerCapture(e.pointerId); } catch (err) {}
     state.drawing = true; state.last = pos(e);
     ctx.globalCompositeOperation = state.eraser ? 'destination-out' : 'source-over';
     ctx.strokeStyle = state.color; ctx.lineWidth = width(state.last);
@@ -59,6 +70,7 @@
   }
   function move(e) {
     if (!state.drawing) return;
+    if (state.penOnly && e.pointerType !== 'pen') return;
     var evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     for (var i = 0; i < evs.length; i++) {
       var p = pos(evs[i]);
@@ -82,11 +94,12 @@
     var act = b.getAttribute('data-act');
     if (act === 'color') { state.color = colors[b.getAttribute('data-color')]; state.eraser = false; }
     else if (act === 'eraser') { state.eraser = !state.eraser; }
+    else if (act === 'penonly') { setPenOnly(!state.penOnly); return; }
     else if (act === 'thin') { state.width = 2; }
     else if (act === 'thick') { state.width = 5; }
     else if (act === 'clear') { ctx.save(); ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.restore(); delete store[slideIndex]; }
     else if (act === 'close') { setOpen(false); }
-    tools.querySelectorAll('button').forEach(function (x) { x.classList.remove('on'); });
+    tools.querySelectorAll('button:not([data-act=penonly])').forEach(function (x) { x.classList.remove('on'); });
     if (act === 'color' || act === 'eraser' || act === 'thin' || act === 'thick') {
       if (state.eraser) tools.querySelector('[data-act=eraser]').classList.add('on');
       else tools.querySelector('[data-color="' + Object.keys(colors).find(function (k) { return colors[k] === state.color; }) + '"]').classList.add('on');
