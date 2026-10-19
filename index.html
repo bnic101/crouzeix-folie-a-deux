@@ -65,10 +65,15 @@
   <div class="theorem blue"><span class="label">von Neumann's inequality.</span> The disc is a spectral set for any contraction:
   \[ \|p(T)\|\le\sup_{z\in\mathbb D}|p(z)|,\qquad \|T\|\le1. \]
   <span class="dim">(Also the closed half plane if \(\operatorname{Re}T=\tfrac{T+T^*}{2}\ge0\).)</span></div>
-  <table class="plain">
+</section>
+
+<section class="slide fill">
+  <h2>Two proofs of von Neumann</h2>
+  <table class="plain big">
     <tr><th class="o">von Neumann</th><th class="b">Sz.-Nagy</th></tr>
     <tr><td>function theory</td><td>dilation theory</td></tr>
-    <tr><td>Blaschke products</td><td>unitary dilation of \(T\): \(p(T)=P_{\mathcal H}\,p(U)|_{\mathcal H}\)</td></tr>
+    <tr><td>Blaschke products</td><td>unitary dilation of \(T\)</td></tr>
+    <tr><td>Möbius maps by hand</td><td>\(p(T)=P_{\mathcal H}\,p(U)|_{\mathcal H}\)</td></tr>
   </table>
 </section>
 
@@ -81,12 +86,6 @@
       <p><b>Remark.</b> This conjectured bound is sharp:
       \[ W\!\begin{pmatrix}0&1\\0&0\end{pmatrix}=D(0,\tfrac12),\qquad p(z)=z, \]
       \[ \Big\|\begin{pmatrix}0&1\\0&0\end{pmatrix}\Big\|=1=2\cdot\tfrac12=2\sup_{D(0,1/2)}|p(z)|. \]</p>
-      <p><b>Antecedents.</b></p>
-      <ul>
-        <li>von Neumann, only for contractions.</li>
-        <li>Okubo–Ando 1975, Berger–Stampfli 1967: the disc is a \(2\)-spectral set. Via \(2\)-dilations: \(W(T)\subset\overline{\mathbb D}\) iff \(T^n=2V^*U^nV\) (Berger).</li>
-      </ul>
-      <p>Crouzeix 2004: true for \(2\times2\), with equality only when \(W(T)\) is a disc.</p>
     </div>
     <div class="viz">
       <svg viewBox="0 0 300 300">
@@ -102,6 +101,16 @@
   </div>
 </section>
 
+<section class="slide fill">
+  <h2>Antecedents</h2>
+  <ul class="big">
+    <li>von Neumann: constant \(1\), only for contractions.</li>
+    <li>Okubo–Ando 1975, Berger–Stampfli 1967: the disc is a \(2\)-spectral set.</li>
+    <li>Via \(2\)-dilations: \(W(T)\subset\overline{\mathbb D}\) iff \(T^n=2V^*U^nV\) (Berger).</li>
+    <li>Crouzeix 2004: true for \(2\times2\), equality only when \(W(T)\) is a disc.</li>
+  </ul>
+</section>
+
 <!-- 5 -->
 <section class="slide">
   <h2>Constants</h2>
@@ -115,17 +124,21 @@
     <tr class="hl"><td>Jin</td><td>27 July 2026</td><td>\(2\)</td><td>function theory</td></tr>
     <tr class="hl"><td>Lorist–Schwenninger</td><td>Aug 2026</td><td>\(2\)</td><td>dilation theory</td></tr>
   </table>
-  <p><b>Technique</b>, 1999 to 2026: the double layer potential. Shrinking \(\Omega\) to \(\overline{W(T)}\), \(\sup_\Omega C_\Omega\le2\) is the conjecture.</p>
+  <p><b>Technique</b>, 1999 to 2026: the double layer potential.</p>
 </section>
 
 <!-- 6 -->
 <section class="slide">
   <h2>Double layer potential</h2>
-  <div class="cols">
+  <p>\(\Omega\subset\mathbb C\) open bounded convex, smooth boundary, \(\overline{W(T)}\subset\Omega\). \(A(\Omega)\): holomorphic on \(\Omega\), continuous on \(\overline\Omega\). \(C(\partial\Omega)\): continuous on \(\partial\Omega\). Sup norms.</p>
+  <p>For \(\sigma\in\partial\Omega\) let \(\nu=\nu(\sigma)\) be the outward pointing normal; for \(z\in\Omega\) the double layer potential is
+  \[ \mu(\sigma,z)=\frac{1}{2\pi}\Big(\underbrace{\frac{\nu}{\sigma-z}}_{\text{first layer}}+\underbrace{\frac{\bar\nu}{\bar\sigma-\bar z}}_{\text{second layer}}\Big)=\frac1\pi\operatorname{Re}\underbrace{\frac{\nu}{\sigma-z}}_{\text{Cauchy kernel}}. \]</p>
+</section>
+
+<section class="slide">
+  <h2>Double layer potential</h2>
+  <div class="cols viz-right">
     <div>
-      <p>Let \(\Omega\subset\mathbb C\) be an open bounded convex set with smooth boundary \(\partial\Omega\) and \(\overline{W(T)}\subset\Omega\). \(A(\Omega)\): holomorphic on \(\Omega\), continuous on \(\overline\Omega\), sup norm. \(C(\partial\Omega)\): continuous on \(\partial\Omega\), sup norm.</p>
-      <p>For \(\sigma\in\partial\Omega\) denote the outward pointing normal by \(\nu=\nu(\sigma)\), and if \(z\in\Omega\) define the double layer potential by
-      \[ \mu(\sigma,z)=\frac{1}{2\pi}\Big(\underbrace{\frac{\nu}{\sigma-z}}_{\text{first layer}}+\underbrace{\frac{\bar\nu}{\bar\sigma-\bar z}}_{\text{second layer}}\Big)=\frac1\pi\operatorname{Re}\underbrace{\frac{\nu}{\sigma-z}}_{\text{Cauchy kernel}}. \]</p>
       <ul>
         <li>\(\mu\,ds=\tfrac1\pi\,d\arg(\sigma-z)\): the angle at which \(z\) sees \(d\sigma\).</li>
         <li>\(\mu\ge0\): \(z\) inside every supporting line.</li>
@@ -158,8 +171,13 @@
   \[ S(f,T)=C(f,T)+C(\bar f,T)^*\in\mathcal B(\mathcal H). \]
   By definition \(S\) is the function calculus integration against the double layer potential \(\mu(\sigma,z)\), i.e.
   \[ S(f,T)=\int_{\partial\Omega}f(\sigma)\,\mu(\sigma,T)\,ds, \]
-  with \(\mu(\sigma,T)=\tfrac1\pi\operatorname{Re}[\nu(\sigma)(\sigma-T)^{-1}]\ge0\) and \(\int\mu\,ds=2I\).</p>
-  <div class="theorem"><span class="label">Lemma (Crouzeix–Palencia 2017).</span> For \(f\in C(\partial\Omega)\), \(\ \|S(f,T)\|=\|f(T)+C(\bar f,T)^*\|\le2\|f\|_{\partial\Omega}\).</div>
+  with \(\mu(\sigma,T)=\tfrac1\pi\operatorname{Re}[\nu(\sigma)(\sigma-T)^{-1}]\ge0\), \(\int\mu\,ds=2I\).</p>
+</section>
+
+<section class="slide">
+  <h2>The question</h2>
+  <div class="theorem"><span class="label">Lemma (Crouzeix–Palencia 2017).</span> For \(f\in C(\partial\Omega)\),
+  \[ \|S(f,T)\|=\|f(T)+C(\bar f,T)^*\|\le2\|f\|_{\partial\Omega}. \]</div>
   <p class="remark">Positivity, mass \(2I\), Cauchy–Schwarz.</p>
   <p>So the question we must answer is: how does \(\|S(f,T)\|\) control \(\|f(T)\|\)? In particular, can we estimate \(C(\bar f,T)^*\) or make it vanish all together?</p>
 </section>
@@ -167,15 +185,20 @@
 <!-- 8 -->
 <section class="slide">
   <h2>Positivity and the double layer formula</h2>
-  <div class="cols">
+  <p>Consider
+  \[ 2\Phi(f):=f(T)+C(\bar f,T)^*=f(T)+\alpha(f)(T)^*, \]
+  where
+  \[ \alpha(f)(z)=\frac{1}{2\pi i}\int_{\partial\Omega}\frac{\overline{f(\sigma)}}{\sigma-z}\,d\sigma. \]
+  Note that \(\alpha:A(\Omega)\to A(\Omega)\) is antilinear and \(\alpha(1)=1\).</p>
+  <p>Positivity of \(\Phi\) says \(2\|\Phi(f)\|\le2\|f\|_{\partial\Omega}\): the result from the previous slide, found in Crouzeix–Palencia.</p>
+</section>
+
+<section class="slide">
+  <h2>Positivity and the double layer formula</h2>
+  <div class="cols viz-right">
     <div>
-      <p>Consider
-      \[ 2\Phi(f):=f(T)+C(\bar f,T)^*=f(T)+\alpha(f)(T)^*, \]
-      where
-      \[ \alpha(f)(z)=\frac{1}{2\pi i}\int_{\partial\Omega}\frac{\overline{f(\sigma)}}{\sigma-z}\,d\sigma. \]
-      Note that \(\alpha:A(\Omega)\to A(\Omega)\) is antilinear and \(\alpha(1)=1\).</p>
-      <p>Positivity of \(\Phi\) says \(2\|\Phi(f)\|\le2\|f\|_{\partial\Omega}\): the result from the previous slide, found in Crouzeix–Palencia.</p>
-      <p>Scalar case: \(2\Phi(f)(z)=f(z)+\overline{\alpha(f)(z)}\), holomorphic plus anti-holomorphic. Disc: \(\alpha(f)=\overline{f(0)}\), a constant.</p>
+      <p>Scalar case: \(2\Phi(f)(z)=f(z)+\overline{\alpha(f)(z)}\), holomorphic plus anti-holomorphic.</p>
+      <p>Disc: \(\alpha(f)=\overline{f(0)}\), a constant.</p>
       <p>Crouzeix–Palencia: estimate the companion, \(\|\alpha(f)\|\le\|f\|\). Gives \(1+\sqrt2\).</p>
       <p>An alternate approach (not taken by either ChatGPT proof) is to “hack” the formula by studying extremal functions: \(f\) extremal, \(\|f(T)\|\le\|2\Phi(f)\|\), which proves Crouzeix. <span class="dim">(Bickel, Gorkin, Greenbaum, Overton.)</span></p>
     </div>
@@ -201,9 +224,15 @@
   \[ TT^*TT^*=T\,\big(T+g(A)^*\big)^*\,TT^*-(fgf)(A)\,T^* \]
   \[ K^4\le2K^3+K^2,\qquad K\le1+\sqrt2. \]
   <span class="dim">(Ransford–Schwenninger)</span></p>
-  <p>Uses only \(\|f(A)+g(A)^*\|\le2\) and \(\|g\|\le\|f\|\). Sharp under these (Ransford–Schwenninger 2018):
+  <p>Uses only \(\|f(A)+g(A)^*\|\le2\) and \(\|g\|\le\|f\|\).</p>
+</section>
+
+<section class="slide">
+  <h2>Why not \(2\)</h2>
+  <p>Sharp under those two facts (Ransford–Schwenninger 2018):
   \[ T=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad \Omega=D(0,\tfrac14)\cup D(1,\tfrac14), \]
-  \(g=-f(0)\), \(-f(1)\) on the two discs; \(h=\mp1\): \(\|h(T)\|=1+\sqrt2\). Not a counterexample: \(W(T)\not\subset\Omega\).</p>
+  \(g=-f(0)\), \(-f(1)\) on the two discs; \(h=\mp1\): \(\|h(T)\|=1+\sqrt2\).</p>
+  <p>Not a counterexample: \(W(T)\not\subset\Omega\).</p>
   <p>Here \(g(1)=-1\). The Cauchy transform: \(\alpha(1)=1\). Unused information: \(\alpha\) is unital.</p>
 </section>
 
@@ -214,10 +243,8 @@
   \[ \theta_\alpha:\mathcal A\to\mathcal B(\mathcal H),\qquad a\mapsto\tfrac12\big(\theta(a)+\theta(\alpha(a))^*\big) \]
   is contractive. Then \(\|\theta\|\le2\).</div>
   <ul>
-    <li>Ransford–Schwenninger (2018) show that the twisted real part theorem ⇒ Crouzeix.</li>
+    <li>Ransford–Schwenninger (2018): twisted real part ⇒ Crouzeix.</li>
     <li>Michael Hartz (2026) proves the theorem using Jin's ChatGPT solution.</li>
-    <li>\(\theta(f)=f(T)\), \(\alpha\) the Cauchy transform: \(\theta_\alpha=\Phi\).</li>
-    <li>Unital and contractive ⇒ positive: \(\operatorname{Re}a\ge0\Rightarrow\operatorname{Re}\theta_\alpha(a)\ge0\).</li>
   </ul>
 </section>
 
@@ -233,16 +260,23 @@
   <div class="theorem"><span class="label">Theorem (Holomorphic → resolvent transfer; Jin, operator form Hartz).</span> Let \(T\in\mathcal B(\mathcal H)\) with \(\sigma(T)\subset\overline{\mathbb D}\). Let \(H:\mathbb D\to\mathcal B(\mathcal H)\) be a holomorphic function such that \(H(0)=I\) and \(\operatorname{Re}H(z)\ge0\) for all \(z\in\mathbb D\). Assume that
   \[ H(z)-(I-zT)^{-1} \]
   commutes with \(T^*\) for all \(z\in\mathbb D\). Then \(\|T\|\le2\).</div>
-  <ul>
-    <li>\(H(z)-(I-zT)^{-1}=0\): \(\operatorname{Re}(I-zT)^{-1}\ge0\) iff \(W(T)\subset\overline{\mathbb D}\) (Berger); conclusion is Okubo–Ando.</li>
-    <li>Hartz shows that holomorphic → resolvent transfer ⇒ twisted real part: \(T=\theta(a)\), \(c_z=(1+za)(1-za)^{-1}\), \(H(z)=\theta_\alpha(c_z)\). Then \(\operatorname{Re}H\ge0\) and \(H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big)\), an adjoint from the commutative algebra \(\theta(\mathcal A)\ni T\).</li>
-    <li>Concretely \(\Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^*\): every power of \(f\) at once.</li>
-  </ul>
+  <p>\(H(z)-(I-zT)^{-1}=0\): \(\operatorname{Re}(I-zT)^{-1}\ge0\) iff \(W(T)\subset\overline{\mathbb D}\) (Berger); conclusion is Okubo–Ando.</p>
+</section>
+
+<section class="slide">
+  <h2>Transfer ⇒ twisted real part (Hartz)</h2>
+  <p>\(T=\theta(a)\), \(\|a\|\le1\), \(c_z=(1+za)(1-za)^{-1}\), \(H(z)=\theta_\alpha(c_z)\).</p>
+  <p>Then \(\operatorname{Re}H\ge0\), and
+  \[ H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big), \]
+  an adjoint from the commutative algebra \(\theta(\mathcal A)\ni T\).</p>
+  <p>Concretely, \(\theta(f)=f(T)\):
+  \[ \Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^*. \]
+  Every power of \(f\) at once.</p>
 </section>
 
 <!-- 13 -->
 <section class="slide">
-  <h2>Proof</h2>
+  <h2>Proof: compress</h2>
   <p>\(\Delta(z):=H(z)-(I-zT)^{-1}\), \(R(z):=(I-zT)^{-1}\). On \(H^2\otimes\mathcal H\): \(\operatorname{Re}M_H\ge0\), \(M_H=M_R+M_\Delta\).</p>
   <p>\(N_W:=\{F=\sum F_nz^n:\ \sum W^nF_n=0\}\), \(\sigma(W)\subset\mathbb D\).</p>
   <ul>
@@ -250,9 +284,16 @@
     <li>\(\Delta(0)=0\), \(\Gamma\) the kernel of \(N_W\) at \(0\) ⇒ \(\Gamma^*M_\Delta\Gamma=0\).</li>
   </ul>
   <p>\(W=\tfrac12T^*\):
-  \[ \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0. \]
-  \(P=\sum4^{-n}T^{*n}T^n\), \(Q=\sum2^{-n}T^{*n}T^n\), \(Y=Q-P\ge\tfrac14T^*T\):
-  \[ 4Y-YP-PY\ge0\ \Rightarrow\ P\le2I\ \Rightarrow\ T^*T\le T^*PT=4(P-I)\le4I. \]</p>
+  \[ \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0. \]</p>
+</section>
+
+<section class="slide">
+  <h2>Proof: unwind</h2>
+  <p>\[ P=\sum_{n\ge0}4^{-n}T^{*n}T^n,\qquad Q=\sum_{n\ge0}2^{-n}T^{*n}T^n, \]
+  \(Y=Q-P\ge\tfrac14T^*T\).
+  \[ 4Y-YP-PY\ge0\ \Rightarrow\ P\le2I, \]
+  Stein: \(P=I+\tfrac14T^*PT\), so
+  \[ T^*T\le T^*PT=4(P-I)\le4I. \]</p>
   <p>Jin: sample the Herglotz kernel of \(H\) at \(\lambda_i/2\) and at \(0\).</p>
 </section>
 
@@ -268,12 +309,18 @@
   <div class="theorem blue"><span class="label">Lemma (Lorist–Schwenninger, ChatGPT).</span> Let \(\mathcal H\) be a Hilbert space and \(T\in\mathcal B(\mathcal H)\). Suppose there exists a Hilbert space \(\mathcal K\), a contraction \(Q\in\mathcal B(\mathcal K)\) and an isometry \(V\in\mathcal B(\mathcal H,\mathcal K)\) such that the operators
   \[ E_n:=2V^*Q^{*n}V-T^{*n},\qquad n\in\mathbb N, \]
   are uniformly bounded and commute with \(T\). Then \(\|T\|\le2\).</div>
+  <p>\(E_n=0\): \(2\)-dilation of \(T^*\), \(\|T\|\le2\).</p>
+</section>
+
+<section class="slide">
+  <h2>Lemma ⇒ Crouzeix</h2>
+  <p>\(\mathcal K=L^2(\partial\Omega,ds;\mathcal H)\), \(Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x\), \(Q=M_f\), \(\|f\|_\infty=1\), \(T=f(A)\):
+  \[ V^*Q^nV=\Phi(f^n), \]
+  \[ E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A). \]</p>
   <ul>
-    <li>\(E_n=0\): \(2\)-dilation of \(T^*\), \(\|T\|\le2\).</li>
-    <li>\(\mathcal K=L^2(\partial\Omega,ds;\mathcal H)\), \(Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x\), \(Q=M_f\), \(\|f\|_\infty=1\), \(T=f(A)\):
-    \[ V^*Q^nV=\Phi(f^n),\qquad E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A). \]</li>
     <li>\(E_n\) commutes with \(f(A)\); \(\|E_n\|\le\|\theta\|\|\alpha\|\). Hence \(\|f(A)\|\le2\).</li>
-    <li>Stinespring for \(\Phi\); \(V\) isometric since \(\int\mu\,ds=2I\). \(\|\alpha\|\le1\) not used.</li>
+    <li>Stinespring for \(\Phi\); \(V\) isometric since \(\int\mu\,ds=2I\).</li>
+    <li>\(\|\alpha\|\le1\) not used.</li>
   </ul>
 </section>
 
@@ -284,10 +331,10 @@
   \[ m_n:=\operatorname{Re}\langle E_nT^nx,x\rangle,\qquad u:=Q^*VTx-\kappa Vx. \]
   \[ \begin{aligned}
   \|u\|^2&\le 2\kappa^2-\kappa^3-\kappa m_1 && (n=1)\\
-  \kappa m_1&\ge-\frac{\|u\|^2}{(\kappa-1)^2} && (\text{telescope }\kappa m_n-m_{n+1},\ \text{all }n)
+  \kappa m_1&\ge-\frac{\|u\|^2}{(\kappa-1)^2} && (\text{all }n)
   \end{aligned} \]
   \[ \|u\|^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa). \]</p>
-  <p>First line alone: \(\kappa\le1+\sqrt{1-m_1}\). \(\|\alpha\|\le1\Rightarrow m_1\ge-1\Rightarrow1+\sqrt2\). \(m_1<0\) for some \(3\times3\).</p>
+  <p>First line alone: \(\kappa\le1+\sqrt{1-m_1}\); \(m_1\ge-1\) gives \(1+\sqrt2\). \(m_1<0\) for some \(3\times3\).</p>
 </section>
 
 <!-- 17 -->
@@ -301,7 +348,7 @@
     <tr><td>used</td><td>commutes with \(T^*\)</td><td>commutes with \(T\)</td></tr>
     <tr><td>removal</td><td>\(\Gamma^*M_\Delta\Gamma=0\)</td><td>telescoping</td></tr>
   </table>
-  <p>Crouzeix–Palencia use the <i>size</i> of the companion, \(\|\alpha(f)\|\le\|f\|\): sharp at \(1+\sqrt2\). Un and Deux use its <i>location</i>, the commutative algebra \(\{g(T)\}\ni f(T)\). Its size is never used.</p>
+  <p>Crouzeix–Palencia use the <i>size</i> of the companion, \(\|\alpha(f)\|\le\|f\|\): sharp at \(1+\sqrt2\). Un and Deux use its <i>location</i>, the commutative algebra \(\{g(T)\}\ni f(T)\).</p>
 </section>
 
 <!-- 18 -->
@@ -310,10 +357,10 @@
   <p>What the papers say the model did.</p>
   <ul>
     <li>Jin: ChatGPT proposed sampling the Herglotz kernel at \(\lambda_i/2\) and adding the origin sample that cancels the correction.</li>
-    <li>Lorist–Schwenninger: GPT-5.6, 25–26 July, asked for an improvement in estimates involving the iterates \(f^n\). Pointed at \(\Phi(f^{n+1})^*f(A)x-\|f(A)\|\Phi(f^n)^*x\), controlled uniformly in \(n\) by the quantity behind \(m_1\). Lemma abstracted from that. Saw Jin's preprint 28 July.</li>
+    <li>Lorist–Schwenninger: GPT-5.6, 25–26 July, asked about estimates involving the iterates \(f^n\). Pointed at \(\Phi(f^{n+1})^*f(A)x-\|f(A)\|\Phi(f^n)^*x\), controlled uniformly in \(n\). Lemma abstracted from that. Saw Jin's preprint 28 July.</li>
     <li>Hartz: ChatGPT to discuss Jin's preprint.</li>
   </ul>
-  <p>Same step twice: one \(f\) → all \(f^n\), applied to the companion.</p>
+  <p>Same step twice: one \(f\) → all \(f^n\).</p>
 </section>
 
 <!-- 19 -->
@@ -321,9 +368,9 @@
   <h2>Completely bounded</h2>
   <div class="theorem"><span class="label">Conjecture.</span> For every \(m\ge1\) and \(F=[f_{ij}]\in M_m(A(\Omega))\), \(\ \|F(T)\|\le2\sup_{z\in\Omega}\|F(z)\|\).</div>
   <ul>
-    <li>Equivalently \(f\mapsto f(T)\) has cb-norm \(\le2\). Paulsen: \(T\) similar to an operator with \(\overline{W(T)}\) a complete spectral set.</li>
+    <li>cb-norm \(\le2\); Paulsen: \(T\) similar to an operator with \(\overline{W(T)}\) a complete spectral set.</li>
     <li>Known: \(1+\sqrt2\) (Crouzeix–Palencia); \(2\) for discs, weighted shifts (Crouzeix–Greenbaum 2025).</li>
-    <li>\(M_m(A(\Omega))\) is not commutative. Un and Deux need the companion to commute with \(f(T)\); Crouzeix–Palencia need only \(\|\alpha\|\le1\), which survives.</li>
+    <li>\(M_m(A(\Omega))\) not commutative: Un and Deux need the companion to commute with \(f(T)\). Crouzeix–Palencia need only \(\|\alpha\|\le1\).</li>
     <li>Last week: [reference]. OpenAI SlopDrop (Burnstein, Iosevich, Krause, Yavicoli).</li>
   </ul>
 </section>

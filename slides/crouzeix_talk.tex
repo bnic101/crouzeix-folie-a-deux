@@ -1,4 +1,4 @@
-\documentclass[11pt]{beamer}
+\documentclass[14pt]{beamer}
 \usetheme{default}
 \usefonttheme[onlymath]{serif}
 \setbeamertemplate{navigation symbols}{}
@@ -14,6 +14,7 @@
 \setbeamerfont{frametitle}{series=\bfseries,size=\large}
 \setbeamerfont{block title}{series=\bfseries}
 \setbeamerfont{title}{series=\bfseries,size=\LARGE}
+\setbeamersize{text margin left=7mm,text margin right=7mm}
 
 % Speaker notes: crouzeix_talk_notes.tex defines \shownotes and inputs this file.
 \ifdefined\shownotes
@@ -65,7 +66,7 @@
   In finite dimension closed and convex (Toeplitz--Hausdorff). In infinite dimension convex, $\overline{W(T)}\supseteq\conv\sigma(T)$.
 
   \begin{center}
-  \begin{tikzpicture}[scale=0.8,>=Stealth]
+  \begin{tikzpicture}[scale=0.68,>=Stealth]
     \begin{scope}[xshift=0cm]
       \draw[gray!50,thin] (-1.1,0)--(1.1,0) (0,-1.1)--(0,1.1);
       \fill[chalkblue!25] (0,0) circle (0.5);
@@ -73,14 +74,14 @@
       \fill[chalkorange] (0,0) circle (1.6pt);
       \node[below,font=\scriptsize] at (0,-1.15) {$\begin{pmatrix}0&1\\0&0\end{pmatrix}$};
     \end{scope}
-    \begin{scope}[xshift=3.4cm]
+    \begin{scope}[xshift=3.6cm]
       \draw[gray!50,thin] (-1.1,0)--(1.1,0) (0,-1.1)--(0,1.1);
       \fill[chalkblue!25] (1,0)--(0,1)--(-1,0)--cycle;
       \draw[chalkblue,thick] (1,0)--(0,1)--(-1,0)--cycle;
       \fill[chalkorange] (1,0) circle (1.6pt) (0,1) circle (1.6pt) (-1,0) circle (1.6pt);
       \node[below,font=\scriptsize] at (0,-1.15) {$\mathrm{diag}(1,i,-1)$};
     \end{scope}
-    \begin{scope}[xshift=6.8cm]
+    \begin{scope}[xshift=7.2cm]
       \draw[gray!50,thin] (-1.3,0)--(1.3,0) (0,-1.1)--(0,1.1);
       \fill[chalkblue!25] (0,0) ellipse (1.118 and 0.5);
       \draw[chalkblue,thick] (0,0) ellipse (1.118 and 0.5);
@@ -89,7 +90,7 @@
     \end{scope}
   \end{tikzpicture}
   \end{center}
-  {\footnotesize Orange: $\sigma(T)$. Blue: $W(T)$. Normal: $\overline{W(T)}=\conv\sigma(T)$. $2\times2$: an ellipse with foci at the eigenvalues.}
+  {\small Orange: $\sigma(T)$. Blue: $W(T)$. Normal: $\conv\sigma(T)$. $2\times2$: ellipse, foci at the eigenvalues.}
 \end{frame}
 \note{[3 min] $\ip{Nx}{x}=x_2\bar x_1$, modulus $\le\frac12$, every value in the disc attained. Minor axis of the ellipse: $|t_{12}|$ in Schur form. Hilbert space case: compress to Krylov subspaces. Website: more examples, $\norm T/w(T)$.}
 
@@ -107,15 +108,24 @@
     \norm{p(T)}\le\sup_{z\in\D}|p(z)|,\qquad \norm{T}\le1.
   \]
   (Also the closed half plane if $\re T=\tfrac{T+T^*}{2}\ge0$.)
-
-  \medskip
-  \begin{tabular}{@{}l|l@{}}
-    von Neumann & Sz.-Nagy\\
-    function theory & dilation theory\\
-    Blaschke products & unitary dilation of $T$: $p(T)=P_\Hil\,p(U)|_\Hil$
-  \end{tabular}
 \end{frame}
-\note{[3 min] von Neumann: reduce to Blaschke products, M\"obius maps by hand. Sz.-Nagy: compression of a unitary. Same split for the two 2026 proofs.}
+\note{[2 min] Spectral set: von Neumann's word.}
+
+%======================================================================
+\begin{frame}{Two proofs of von Neumann}
+  \vfill
+  \begin{center}
+  \large
+  \begin{tabular}{@{}l|l@{}}
+    von Neumann & Sz.-Nagy\\[8pt]
+    function theory & dilation theory\\[8pt]
+    Blaschke products & unitary dilation of $T$\\[8pt]
+    M\"obius maps by hand & $p(T)=P_\Hil\,p(U)|_\Hil$
+  \end{tabular}
+  \end{center}
+  \vfill
+\end{frame}
+\note{[2 min] von Neumann: reduce to Blaschke products, M\"obius maps by hand. Sz.-Nagy: compression of a unitary. Same split for the two 2026 proofs.}
 
 %======================================================================
 \begin{frame}{Crouzeix conjecture}
@@ -126,17 +136,23 @@
   \medskip
   \textbf{Remark.} This conjectured bound is sharp:
   \[
-    W\!\begin{pmatrix}0&1\\0&0\end{pmatrix}=D(0,\tfrac12),\qquad p(z)=z,\qquad
-    \Big\|\begin{pmatrix}0&1\\0&0\end{pmatrix}\Big\|=1=2\cdot\tfrac12 .
+    W\!\begin{pmatrix}0&1\\0&0\end{pmatrix}=D(0,\tfrac12),\qquad p(z)=z,
   \]
+  \[
+    \Big\|\begin{pmatrix}0&1\\0&0\end{pmatrix}\Big\|=1=2\cdot\tfrac12=2\sup_{D(0,1/2)}|p(z)|.
+  \]
+\end{frame}
+\note{[2 min] $\ip{Nx}{x}=x_2\bar x_1$.}
 
-  \medskip
-  \textbf{Antecedents.}
+%======================================================================
+\begin{frame}{Antecedents}
+  \large
   \begin{itemize}
-    \item von Neumann, only for contractions.
-    \item Okubo--Ando 1975, Berger--Stampfli 1967: the disc is a $2$-spectral set. Via $2$-dilations: $W(T)\subset\overline\D$ iff $T^n=2V^*U^nV$ (Berger).
+    \item von Neumann: constant $1$, only for contractions.
+    \item Okubo--Ando 1975, Berger--Stampfli 1967: the disc is a $2$-spectral set.
+    \item Via $2$-dilations: $W(T)\subset\overline\D$ iff $T^n=2V^*U^nV$ (Berger).
+    \item Crouzeix 2004: true for $2\times2$, equality only when $W(T)$ is a disc.
   \end{itemize}
-  Crouzeix 2004: true for $2\times2$, with equality only when $W(T)$ is a disc.
 \end{frame}
 \note{[3 min] Constant $2$ for the disc is a theorem, not a triviality: Berger--Stampfli need $p(0)=0$, Okubo--Ando remove it. $2\times2$: exact constant as a function of the eccentricity.}
 
@@ -146,7 +162,7 @@
   \[
     C_\Omega:=\sup\big\{\norm{f(T)}:\ W(T)\subset\Omega,\ \norm{f}_\infty\le1\big\}.
   \]
-  {\footnotesize
+  {\small\setlength{\tabcolsep}{3pt}
   \begin{tabular}{@{}llll@{}}
     Delyon--Delyon & 1999 & $C_\Omega<\infty$ & depends on $\Omega$\\
     Crouzeix & 2004 & $2$ & only for $2\times2$\\
@@ -157,7 +173,7 @@
   \end{tabular}}
 
   \medskip
-  \textbf{Technique}, 1999 to 2026: the double layer potential. Shrinking $\Omega$ to $\overline{W(T)}$, $\sup_\Omega C_\Omega\le2$ is the conjecture.
+  \textbf{Technique}, 1999 to 2026: the double layer potential.
 \end{frame}
 \note{[2 min] Delyon--Delyon: constant from diameter$^2$/area. Crouzeix 2007: hard estimates on the Cauchy transform. Crouzeix--Palencia: six pages, survives matrix-valued $f$. Nine years, then two proofs in a week.}
 
@@ -169,10 +185,15 @@
     \mu(\sigma,z)=\frac{1}{2\pi}\Big(\underbrace{\frac{\nu}{\sigma-z}}_{\text{first layer}}+\underbrace{\frac{\bar\nu}{\bar\sigma-\bar z}}_{\text{second layer}}\Big)
   \]
   $=\frac1\pi\re\frac{\nu}{\sigma-z}$. First layer: the Cauchy kernel.
-  \begin{columns}[T]
+\end{frame}
+\note{[2 min] Twice the real part of the Cauchy kernel.}
+
+%======================================================================
+\begin{frame}{Double layer potential}
+  \begin{columns}[c]
   \begin{column}{0.42\textwidth}
     \begin{center}
-    \begin{tikzpicture}[scale=0.65,>=Stealth]
+    \begin{tikzpicture}[scale=1.0,>=Stealth]
       \fill[chalkblue!12] plot[smooth cycle,tension=0.8] coordinates {(-1.6,0.1) (-0.9,1.1) (0.8,1.2) (1.7,0.3) (1.2,-1.0) (-0.6,-1.2)};
       \draw[chalkblue,thick] plot[smooth cycle,tension=0.8] coordinates {(-1.6,0.1) (-0.9,1.1) (0.8,1.2) (1.7,0.3) (1.2,-1.0) (-0.6,-1.2)};
       \coordinate (s) at (1.52,0.72);
@@ -186,15 +207,16 @@
     \end{center}
   \end{column}
   \begin{column}{0.58\textwidth}
-    \small
     \begin{itemize}
       \item $\mu\,ds=\tfrac1\pi\,d\arg(\sigma-z)$: the angle at which $z$ sees $d\sigma$.
       \item $\mu\ge0$: $z$ inside every supporting line.
       \item $\int_{\partial\Omega}\mu\,ds=2$ for $z\in\Omega$; $1$ for $z\in\partial\Omega$.
     \end{itemize}
-    Why use? The Cauchy layer leads to a bound on $f(z)$. If we can control the conjugate we win. (Adjoint under the functional calculus.)
   \end{column}
   \end{columns}
+
+  \bigskip
+  Why use? The Cauchy layer leads to a bound on $f(z)$. If we can control the conjugate we win. (Adjoint under the functional calculus.)
 \end{frame}
 \note{[4 min] Twice the real part of the Cauchy kernel. Mass 2 inside, 1 on the boundary: Gauss jump, which gives continuity of the Cauchy transform of $\bar f$ up to $\partial\Omega$ (Neumann). Only place $W(T)\subset\Omega$ is used. Website: drag $z$; push it to the boundary.}
 
@@ -212,11 +234,21 @@
   \[
     S(f,T)=\int_{\partial\Omega}f(\sigma)\,\mu(\sigma,T)\,ds,
   \]
-  with $\mu(\sigma,T)=\tfrac1\pi\re[\nu(\sigma)(\sigma-T)^{-1}]\ge0$ and $\int\mu\,ds=2I$.
+  with $\mu(\sigma,T)=\tfrac1\pi\re[\nu(\sigma)(\sigma-T)^{-1}]\ge0$, $\int\mu\,ds=2I$.
+\end{frame}
+\note{[2 min] $\mu(\sigma,T)\ge0$: $\ip{Tx}{x}\in\Omega$ gives $\re\bar\nu(\sigma-T)\ge0$; conjugate by the resolvent. Mass $2I$: Cauchy's formula plus its adjoint.}
+
+%======================================================================
+\begin{frame}{The question}
   \begin{lemma}[Crouzeix--Palencia 2017]
-    For $f\in C(\partial\Omega)$, $\ \norm{S(f,T)}=\norm{f(T)+C(\bar f,T)^*}\le2\norm{f}_{\partial\Omega}$.
+    For $f\in C(\partial\Omega)$,
+    \[
+      \norm{S(f,T)}=\norm{f(T)+C(\bar f,T)^*}\le2\norm{f}_{\partial\Omega}.
+    \]
   \end{lemma}
   Positivity, mass $2I$, Cauchy--Schwarz.
+
+  \bigskip
   So the question we must answer is: how does $\norm{S(f,T)}$ control $\norm{f(T)}$? In particular, can we estimate $C(\bar f,T)^*$ or make it vanish all together?
 \end{frame}
 \note{[3 min] $\mu(\sigma,T)\ge0$: $\ip{Tx}{x}\in\Omega$ gives $\re\bar\nu(\sigma-T)\ge0$; conjugate by the resolvent. Mass $2I$: Cauchy's formula plus its adjoint. First layer of $S(f,T)$ is $f(T)$; second layer is the adjoint of the Cauchy integral of $\bar f$, not of $f$.}
@@ -235,10 +267,17 @@
 
   \medskip
   Positivity of $\Phi$ says $2\norm{\Phi(f)}\le2\norm{f}_{\partial\Omega}$: the result from the previous slide, found in Crouzeix--Palencia.
+\end{frame}
+\note{[2 min] Same identity, $\Phi=\frac12S$.}
+
+%======================================================================
+\begin{frame}{Positivity and the double layer formula}
+  Scalar case: $2\Phi(f)(z)=f(z)+\overline{\alpha(f)(z)}$, holomorphic plus anti-holomorphic.
 
   \medskip
-  Scalar case: $2\Phi(f)(z)=f(z)+\overline{\alpha(f)(z)}$, holomorphic plus anti-holomorphic. Disc: $\alpha(f)=\overline{f(0)}$, a constant.
+  Disc: $\alpha(f)=\overline{f(0)}$, a constant.
 
+  \medskip
   Crouzeix--Palencia: estimate the companion, $\norm{\alpha(f)}\le\norm{f}$. Gives $1+\sqrt2$.
 
   \medskip
@@ -257,14 +296,23 @@
   \]
   \hfill(Ransford--Schwenninger)
 
-  \medskip
-  Uses only $\norm{f(A)+g(A)^*}\le2$ and $\norm g\le\norm f$. Sharp under these (Ransford--Schwenninger 2018):
+  \bigskip
+  Uses only $\norm{f(A)+g(A)^*}\le2$ and $\norm g\le\norm f$.
+\end{frame}
+\note{[3 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma.}
+
+%======================================================================
+\begin{frame}{Why not $2$}
+  Sharp under those two facts (Ransford--Schwenninger 2018):
   \[
     T=\begin{pmatrix}1&1\\0&0\end{pmatrix},\qquad \Omega=D(0,\tfrac14)\cup D(1,\tfrac14),
   \]
-  $g=-f(0)$, $-f(1)$ on the two discs; $h=\mp1$: $\norm{h(T)}=1+\sqrt2$. Not a counterexample: $W(T)\not\subset\Omega$.
+  $g=-f(0)$, $-f(1)$ on the two discs; $h=\mp1$: $\norm{h(T)}=1+\sqrt2$.
 
   \medskip
+  Not a counterexample: $W(T)\not\subset\Omega$.
+
+  \bigskip
   Here $g(1)=-1$. The Cauchy transform: $\alpha(1)=1$. Unused information: $\alpha$ is unital.
 \end{frame}
 \note{[4 min] Insert $T^*=(T+g(A)^*)^*-g(A)$ in the middle: first piece $\le2K^3$ by positivity, second $(fgf)(A)T^*$, $\le K^2$ by the lemma. Example: $T^n=T$, $f(T)=\begin{pmatrix}f(1)&f(1)-f(0)\\0&f(0)\end{pmatrix}$, $h(T)=\begin{pmatrix}1&2\\0&-1\end{pmatrix}$.}
@@ -279,13 +327,11 @@
     is contractive. Then $\norm{\theta}\le2$.
   \end{theorem}
   \begin{itemize}
-    \item Ransford--Schwenninger (2018) show that the twisted real part theorem $\Rightarrow$ Crouzeix.
+    \item Ransford--Schwenninger (2018): twisted real part $\Rightarrow$ Crouzeix.
     \item Michael Hartz (2026) proves the theorem using Jin's ChatGPT solution.
-    \item $\theta(f)=f(T)$, $\alpha$ the Cauchy transform: $\theta_\alpha=\Phi$.
-    \item Unital and contractive $\Rightarrow$ positive: $\re a\ge0\Rightarrow\re\theta_\alpha(a)\ge0$.
   \end{itemize}
 \end{frame}
-\note{[2 min] Numerical range and Cauchy transform gone; what remains is positivity of the twisted real part. Both proofs establish this: Hartz as stated, Lorist--Schwenninger with ``completely positive''.}
+\note{[2 min] $\theta(f)=f(T)$, $\alpha$ the Cauchy transform: $\theta_\alpha=\Phi$. Unital and contractive $\Rightarrow$ positive. Both proofs establish this: Hartz as stated, Lorist--Schwenninger with ``completely positive''.}
 
 %======================================================================
 \begin{frame}
@@ -305,18 +351,33 @@
     \]
     commutes with $T^*$ for all $z\in\D$. Then $\norm{T}\le2$.
   \end{theorem}
-  \begin{itemize}
-    \item $H(z)-(I-zT)^{-1}=0$: $\re(I-zT)^{-1}\ge0$ iff $W(T)\subset\overline\D$ (Berger); conclusion is Okubo--Ando.
-    \item Hartz shows that holomorphic $\to$ resolvent transfer $\Rightarrow$ twisted real part:
-      $T=\theta(a)$, $c_z=(1+za)(1-za)^{-1}$, $H(z)=\theta_\alpha(c_z)$. Then $\re H\ge0$ and
-      $H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big)$, an adjoint from the commutative algebra $\theta(\A)\ni T$.
-    \item Concretely $\Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^*$: every power of $f$ at once.
-  \end{itemize}
+  \medskip
+  $H(z)-(I-zT)^{-1}=0$: $\re(I-zT)^{-1}\ge0$ iff $W(T)\subset\overline\D$ (Berger); conclusion is Okubo--Ando.
+\end{frame}
+\note{[3 min] $H$: Carath\'eodory function normalised at $0$. Class $C_\rho$: $(\rho-2)I+2\re(I-zT)^{-1}\ge0$; $\rho=2$ is $w(T)\le1$.}
+
+%======================================================================
+\begin{frame}{Transfer $\Rightarrow$ twisted real part (Hartz)}
+  $T=\theta(a)$, $\norm a\le1$, $c_z=(1+za)(1-za)^{-1}$, $H(z)=\theta_\alpha(c_z)$.
+
+  \medskip
+  Then $\re H\ge0$, and
+  \[
+    H(z)-(I-zT)^{-1}=\tfrac12\big(\theta(\alpha(c_z))^*-I\big),
+  \]
+  an adjoint from the commutative algebra $\theta(\A)\ni T$.
+
+  \bigskip
+  Concretely, $\theta(f)=f(T)$:
+  \[
+    \Delta(w)=\sum_{m\ge1}w^m\alpha(f^m)(T)^* .
+  \]
+  Every power of $f$ at once.
 \end{frame}
 \note{[4 min] $H$: Carath\'eodory function normalised at $0$. Class $C_\rho$: $(\rho-2)I+2\re(I-zT)^{-1}\ge0$; $\rho=2$ is $w(T)\le1$. Cayley transform has positive real part; unital contraction preserves it; $\theta(c_z)=2(I-zT)^{-1}-I$. Crouzeix--Palencia used the identity once.}
 
 %======================================================================
-\begin{frame}{Proof}
+\begin{frame}{Proof: compress}
   $\Delta(z):=H(z)-(I-zT)^{-1}$, $R(z):=(I-zT)^{-1}$. On $H^2\otimes\Hil$: $\re M_H\ge0$, $M_H=M_R+M_\Delta$.
 
   \medskip
@@ -329,10 +390,24 @@
   \[
     \Gamma^*(M_R+M_R^*)\Gamma=\Gamma^*(M_H+M_H^*)\Gamma\ge0 .
   \]
-  $P=\sum4^{-n}T^{*n}T^n$, $Q=\sum2^{-n}T^{*n}T^n$, $Y=Q-P\ge\tfrac14T^*T$:
+\end{frame}
+\note{[3 min] Functions vanishing at an operator point form an ``ideal'' when $\Delta$ commutes with $W$; kernel at $0$ kills $M_\Delta$ since $\Delta(0)=0$. Defect removed exactly, not estimated.}
+
+%======================================================================
+\begin{frame}{Proof: unwind}
   \[
-    4Y-YP-PY\ge0\ \Rightarrow\ P\le2I\ \Rightarrow\ T^*T\le T^*PT=4(P-I)\le4I .
+    P=\sum_{n\ge0}4^{-n}T^{*n}T^n,\qquad Q=\sum_{n\ge0}2^{-n}T^{*n}T^n,
   \]
+  $Y=Q-P\ge\tfrac14T^*T$.
+  \[
+    4Y-YP-PY\ge0\ \Rightarrow\ P\le2I,
+  \]
+  Stein: $P=I+\tfrac14T^*PT$, so
+  \[
+    T^*T\le T^*PT=4(P-I)\le4I .
+  \]
+
+  \bigskip
   Jin: sample the Herglotz kernel of $H$ at $\lambda_i/2$ and at $0$.
 \end{frame}
 \note{[4 min] Functions vanishing at an operator point form an ``ideal'' when $\Delta$ commutes with $W$; kernel at $0$ kills $M_\Delta$ since $\Delta(0)=0$. Defect removed exactly, not estimated. Weights $4^{-n},2^{-n}$ from sampling radius $\frac12$. Appendix: $\Gamma=K_0-K_WP^{-1}$, eigenvector argument, Stein $P=I+\frac14T^*PT$.}
@@ -355,14 +430,24 @@
     \]
     are uniformly bounded and commute with $T$. Then $\norm{T}\le2$.
   \end{lemma}
+  \medskip
+  $E_n=0$: $2$-dilation of $T^*$, $\norm{T}\le2$.
+\end{frame}
+\note{[2 min] Perturbed $2$-dilation; error of any size, bounded in $n$, commuting with $T$.}
+
+%======================================================================
+\begin{frame}{Lemma $\Rightarrow$ Crouzeix}
+  $\K=L^2(\partial\Omega,ds;\Hil)$, $Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x$, $Q=M_f$, $\norm f_\infty=1$, $T=f(A)$:
+  \[
+    V^*Q^nV=\Phi(f^n),
+  \]
+  \[
+    E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A).
+  \]
   \begin{itemize}
-    \item $E_n=0$: $2$-dilation of $T^*$, $\norm{T}\le2$.
-    \item $\K=L^2(\partial\Omega,ds;\Hil)$, $Vx=\tfrac1{\sqrt2}\mu(\cdot,T)^{1/2}x$, $Q=M_f$, $\norm f_\infty=1$, $T=f(A)$:
-      \[
-        V^*Q^nV=\Phi(f^n),\qquad E_n=2\Phi(f^n)^*-f(A)^{*n}=\alpha(f^n)(A).
-      \]
     \item $E_n$ commutes with $f(A)$; $\norm{E_n}\le\norm\theta\norm\alpha$. Hence $\norm{f(A)}\le2$.
-    \item Stinespring for $\Phi$; $V$ isometric since $\int\mu\,ds=2I$. $\norm\alpha\le1$ not used.
+    \item Stinespring for $\Phi$; $V$ isometric since $\int\mu\,ds=2I$.
+    \item $\norm\alpha\le1$ not used.
   \end{itemize}
 \end{frame}
 \note{[4 min] A genuine dilation of $\Phi$, a perturbed $2$-dilation of $f(A)$, error exactly the companion. Commutes: same functional calculus. Bounded: Crouzeix 2007 had $9.08$. Abstract form: $\theta_\alpha$ completely positive $\Rightarrow\norm\theta\le2$ (Arveson, Stinespring).}
@@ -375,14 +460,14 @@
   \]
   \begin{align*}
     \norm{u}^2&\le 2\kappa^2-\kappa^3-\kappa m_1 && (n=1)\\[2pt]
-    \kappa m_1&\ge-\frac{\norm{u}^2}{(\kappa-1)^2} && (\text{telescope } \kappa m_n-m_{n+1},\ \text{all } n)
+    \kappa m_1&\ge-\frac{\norm{u}^2}{(\kappa-1)^2} && (\text{all } n)
   \end{align*}
   \[
     \norm{u}^2\big(1-(\kappa-1)^{-2}\big)\le\kappa^2(2-\kappa) .
   \]
 
   \medskip
-  First line alone: $\kappa\le1+\sqrt{1-m_1}$. $\norm\alpha\le1\Rightarrow m_1\ge-1\Rightarrow1+\sqrt2$. $m_1<0$ for some $3\times3$.
+  First line alone: $\kappa\le1+\sqrt{1-m_1}$; $m_1\ge-1$ gives $1+\sqrt2$. $m_1<0$ for some $3\times3$.
 \end{frame}
 \note{[4 min] $u$: failure of $VTx$ to be a $\kappa$-eigenvector of $Q^*$. Upper bound: $n=1$ only; $m_1=\re\ip{(f\alpha(f))(A)x}{x}$, central since Crouzeix--Palencia. Lower bound: commutation plus the identity for $n+1$, summed with weights $\kappa^{-n+1}$. $m_1\ge0$ would finish; false in general. Appendix: both estimates.}
 
@@ -401,7 +486,7 @@
 
   \bigskip
   Crouzeix--Palencia use the \emph{size} of the companion, $\norm{\alpha(f)}\le\norm f$: sharp at $1+\sqrt2$.
-  Un and Deux use its \emph{location}, the commutative algebra $\{g(T)\}\ni f(T)$. Its size is never used.
+  Un and Deux use its \emph{location}, the commutative algebra $\{g(T)\}\ni f(T)$.
 \end{frame}
 \note{[3 min] Same positivity (Carath\'eodory function / Stinespring), same packaging of all powers, same companion, same commutation hypothesis; compression vs. telescoping.}
 
@@ -410,11 +495,10 @@
   What the papers say the model did.
   \begin{itemize}
     \item Jin: ChatGPT proposed sampling the Herglotz kernel at $\lambda_i/2$ and adding the origin sample that cancels the correction.
-    \item Lorist--Schwenninger: GPT-5.6, 25--26 July, asked for an improvement in estimates involving the iterates $f^n$. Pointed at $\Phi(f^{n+1})^*f(A)x-\norm{f(A)}\Phi(f^n)^*x$, controlled uniformly in $n$ by the quantity behind $m_1$. Lemma abstracted from that. Saw Jin's preprint 28 July.
+    \item Lorist--Schwenninger: GPT-5.6, 25--26 July, asked about estimates involving the iterates $f^n$. Pointed at $\Phi(f^{n+1})^*f(A)x-\norm{f(A)}\Phi(f^n)^*x$, controlled uniformly in $n$. Lemma abstracted from that. Saw Jin's preprint 28 July.
     \item Hartz: ChatGPT to discuss Jin's preprint.
   \end{itemize}
-  \medskip
-  Same step twice: one $f$ $\to$ all $f^n$, applied to the companion.
+  Same step twice: one $f$ $\to$ all $f^n$.
 \end{frame}
 \note{[2 min] Read as written. Proofs written and checked by the authors.}
 
@@ -424,10 +508,10 @@
     For every $m\ge1$ and $F=[f_{ij}]\in M_m(A(\Omega))$,
     $\ \norm{F(T)}\le2\sup_{z\in\Omega}\norm{F(z)}$.
   \end{block}
-  \begin{itemize}
-    \item Equivalently $f\mapsto f(T)$ has cb-norm $\le2$. Paulsen: $T$ similar to an operator with $\overline{W(T)}$ a complete spectral set.
+  \begin{itemize}\small
+    \item cb-norm $\le2$; Paulsen: $T$ similar to an operator with $\overline{W(T)}$ a complete spectral set.
     \item Known: $1+\sqrt2$ (Crouzeix--Palencia); $2$ for discs, weighted shifts (Crouzeix--Greenbaum 2025).
-    \item $M_m(A(\Omega))$ is not commutative. Un and Deux need the companion to commute with $f(T)$; Crouzeix--Palencia need only $\norm\alpha\le1$, which survives.
+    \item $M_m(A(\Omega))$ not commutative: Un and Deux need the companion to commute with $f(T)$. Crouzeix--Palencia need only $\norm\alpha\le1$.
     \item Last week: [reference]. OpenAI SlopDrop (Burnstein, Iosevich, Krause, Yavicoli).
   \end{itemize}
 \end{frame}
@@ -435,17 +519,17 @@
 
 %======================================================================
 \begin{frame}{References}
-  \footnotesize
+  \scriptsize
   \begin{itemize}
     \item S.~Jin, \emph{The numerical range is a 2-spectral set}, Preprints.org 202607.1919, 27 July 2026.
     \item M.~Hartz, \emph{Notes on the solution of Crouzeix's conjecture}, 31 July 2026.
     \item E.~Lorist, F.~L.~Schwenninger, \emph{A solution to Crouzeix's conjecture}, arXiv:2608.03841.
-    \item M.~Crouzeix, \emph{Bounds for analytical functions of matrices}, Integral Equations Operator Theory 48 (2004).
-    \item M.~Crouzeix, C.~Palencia, \emph{The numerical range is a $(1+\sqrt2)$-spectral set}, SIAM J.\ Matrix Anal.\ Appl.\ 38 (2017).
-    \item T.~Ransford, F.~L.~Schwenninger, \emph{Remarks on the Crouzeix--Palencia proof}, SIAM J.\ Matrix Anal.\ Appl.\ 39 (2018).
-    \item R.~Clou\^atre, M.~Ostermann, T.~Ransford, \emph{An abstract approach to the Crouzeix conjecture}, J.\ Operator Theory 90 (2023).
+    \item M.~Crouzeix, \emph{Bounds for analytical functions of matrices}, IEOT 48 (2004).
+    \item M.~Crouzeix, C.~Palencia, \emph{The numerical range is a $(1+\sqrt2)$-spectral set}, SIMAX 38 (2017).
+    \item T.~Ransford, F.~L.~Schwenninger, \emph{Remarks on the Crouzeix--Palencia proof}, SIMAX 39 (2018).
+    \item R.~Clou\^atre, M.~Ostermann, T.~Ransford, \emph{An abstract approach to the Crouzeix conjecture}, JOT 90 (2023).
     \item K.~Bickel, P.~Gorkin, \emph{Blaschke products, level sets, and Crouzeix's conjecture}, J.\ Anal.\ Math.\ 152 (2024).
-    \item B.~Delyon, F.~Delyon, \emph{Generalization of von Neumann's spectral sets}, Bull.\ Soc.\ Math.\ France 127 (1999).
+    \item B.~Delyon, F.~Delyon, \emph{Generalization of von Neumann's spectral sets}, Bull.\ SMF 127 (1999).
   \end{itemize}
   \medskip
   \texttt{\siteurl}
@@ -456,6 +540,7 @@
 
 %======================================================================
 \begin{frame}{Appendix: $\Gamma$}
+  \small
   $K_W:=E_W^*$, $(K_Wx)(z)=(I-zW^*)^{-1}x$, $K_0x\equiv x$. $W=\tfrac12T^*$, $P=K_W^*K_W\ge I$, $K_WP^{-1}K_W^*$ = projection onto $\ran K_W=N_W^\perp$.
   \[
     \Gamma=(I-K_WP^{-1}K_W^*)K_0=K_0-K_WP^{-1}\qquad(K_W^*K_0=I).
@@ -495,6 +580,7 @@
 
 %======================================================================
 \begin{frame}{Appendix: the two estimates}
+  \small
   $E_nT=TE_n$, $T^*Tx=\kappa^2x$:
   \begin{align*}
     \kappa m_n-m_{n+1}

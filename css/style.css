@@ -21,7 +21,7 @@ html, body {
   background: var(--board);
   color: var(--chalk);
   font-family: var(--serif);
-  font-size: clamp(16px, 1.35vw, 22px);
+  font-size: clamp(18px, 1.95vw, 34px);
   line-height: 1.5;
 }
 
@@ -44,6 +44,7 @@ body {
   padding: 6vh max(7vw, 4.5em) 9vh;
   display: none;
   flex-direction: column;
+  justify-content: center;
   overflow: auto;
 }
 .slide.active { display: flex; }
@@ -53,9 +54,9 @@ body {
   margin: 0 0 0.6em;
   letter-spacing: 0.01em;
 }
-.slide h1 { font-size: 3.2em; line-height: 1.1; }
+.slide h1 { font-size: 3em; line-height: 1.1; }
 .slide h2 {
-  font-size: 1.9em;
+  font-size: 1.7em;
   color: var(--chalk);
   border-bottom: 1px solid var(--rule);
   padding-bottom: 0.25em;
@@ -85,6 +86,7 @@ body {
 
 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5vw; align-items: start; }
 .cols.wide-left { grid-template-columns: 1.3fr 1fr; }
+.cols.viz-right { grid-template-columns: 1fr 1.6fr; align-items: center; }
 
 .title-slide { justify-content: center; align-items: flex-start; }
 .title-slide .hand { font-family: var(--hand); font-size: 1.6em; color: var(--orange); margin-bottom: -0.3em; }
@@ -111,7 +113,7 @@ table.plain tr.hl td { color: var(--orange); }
 .viz svg { width: 100%; height: auto; display: block; }
 .viz .controls {
   display: flex; flex-wrap: wrap; gap: 0.6em 1.2em; align-items: center;
-  font-size: 0.8em; color: var(--chalk-dim); margin-top: 0.5em;
+  font-size: 0.7em; color: var(--chalk-dim); margin-top: 0.5em;
 }
 .viz .controls label { display: flex; align-items: center; gap: 0.5em; }
 .viz input[type=range] { accent-color: var(--orange); width: 9em; }
@@ -120,10 +122,10 @@ table.plain tr.hl td { color: var(--orange); }
   border: 1px solid var(--rule); border-radius: 6px; padding: 0.2em 0.6em; cursor: pointer;
 }
 .viz button.on { border-color: var(--orange); color: var(--orange); }
-.viz .readouts { display: flex; gap: 1.5em; flex-wrap: wrap; font-size: 0.8em; margin-top: 0.5em; color: var(--chalk-dim); }
+.viz .readouts { display: flex; gap: 1.5em; flex-wrap: wrap; font-size: 0.7em; margin-top: 0.5em; color: var(--chalk-dim); }
 .viz .readouts b { color: var(--chalk); font-weight: 600; font-variant-numeric: tabular-nums; }
-.viz .caption { font-size: 0.78em; color: var(--chalk-faint); margin-top: 0.4em; }
-.viz .matrix { font-family: var(--serif); font-size: 0.85em; color: var(--chalk); margin-top: 0.3em; }
+.viz .caption { font-size: 0.7em; color: var(--chalk-faint); margin-top: 0.4em; }
+.viz .matrix { font-family: var(--serif); font-size: 0.75em; color: var(--chalk); margin-top: 0.3em; }
 
 #hud {
   position: fixed; left: 0; right: 0; bottom: 0; height: 3px;
@@ -145,7 +147,7 @@ table.plain tr.hl td { color: var(--orange); }
 @media (max-width: 900px) {
   .cols, .cols.wide-left { grid-template-columns: 1fr; }
   .slide { padding: 4vh max(5vw, 4.5em) 9vh; }
-  body { font-size: 15px; }
+  body { font-size: 16px; }
 }
 
 #scratch-btn {
@@ -172,3 +174,7 @@ table.plain tr.hl td { color: var(--orange); }
 }
 .scratch-tools button.on { border-color: var(--chalk-faint); color: var(--chalk); }
 .scratch-tools .sw { display: inline-block; width: 1.1em; height: 1.1em; border-radius: 50%; }
+
+.slide.fill { justify-content: center; }
+.slide.fill h2 { margin-bottom: 1em; }
+.big { font-size: 1.15em; }
